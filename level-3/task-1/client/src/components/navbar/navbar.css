@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #75818D;
+}
+
+.navbar-logo {
+  width: 50px;
+}
+
+.navbar-search {
+  border-radius: 5px;
+  padding: 10px 5px;
+  width: 30%;
+}
+
+.navbar-links {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.navbar-links li {
+  list-style: none;
+  margin-right: 20px;
+  font-size: 1.2rem;
+}
+
+.navbar-links li:last-child {
+  margin-right: 0;
+}
+
+.navbar-links a {
+  color: white;
+}
+
+.navbar-links a:hover {
+  color: blue;
+}
+
+.navbar-links a:visited {
+  color: white;
+}
