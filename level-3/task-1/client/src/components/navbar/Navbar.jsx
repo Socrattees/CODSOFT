@@ -1,6 +1,9 @@
 import React from 'react';
 import './navbar.css';
 
+/* Navigation bar component that displays the logo, search bar,
+and links that sits at the top of the page */
+
 const Navbar = () => {
   return (
     <nav className="navbar">
