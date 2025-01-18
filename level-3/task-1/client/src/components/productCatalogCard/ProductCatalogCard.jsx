@@ -39,7 +39,7 @@ const ProductCatalogCard = ({ product }) => {
         <div className="product-catalog-card-details">
           <h2 className="product-catalog-card-title">{ product.name }</h2>
           <p className="product-catalog-card-description">{ product.description }</p>
-          <p className="product-catalog-card-price">${ product.price }</p>
+          <p className="product-catalog-card-price">R{ product.price }</p>
           <p className={stockClass}>{ stockText }</p>
         </div>
       </div>
