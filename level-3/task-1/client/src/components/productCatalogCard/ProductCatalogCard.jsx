@@ -31,7 +31,7 @@ const ProductCatalogCard = ({ product }) => {
       <div className="product-catalog-card-content-wrapper">
         <div className="product-catalog-card-image-wrapper">
           <img
-            src={ "/products/" + (product.image || "/broken-image.png")}
+            src={ process.env.REACT_APP_PRODUCTS_FOLDER + (product.image || "/broken-image.png")}
             alt={product.name}
             className="product-catalog-card-image"
           />
