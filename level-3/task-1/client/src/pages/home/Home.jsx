@@ -9,9 +9,10 @@ import { getAllProductsCall } from '../../apiCalls';
 /* Home page that displays a welcome message and products */
 
 const Home = () => {
-  // Fetch all products from the database
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
+  // useEffect to get all products when the component mounts
   useEffect(() => {
     const getAllProducts = async () => {
       try {
@@ -24,6 +25,17 @@ const Home = () => {
     getAllProducts();
   }, []);
 
+  // useEffect to get all categories when products state updates
+  useEffect(() => {
+    if (products) {
+      // Get all categories from the products and flatten the array to prevent nested arrays
+      const categories = products.map(product => product.categories).flat();
+      setCategories([...new Set(categories)].sort());
+    }
+  }, [products]);
+
+  console.log(categories);
+
   return (
     <div className="home">
       <Navbar />
@@ -32,7 +44,9 @@ const Home = () => {
         <h1>to</h1>
         <h1>Victory Vault!</h1>
       </div>
-      <ProductCatalog products={products} />
+      { categories.map(category => (
+        <ProductCatalog products={products} key={category} category={category} />
+      )) }
     </div>
   );
 };
