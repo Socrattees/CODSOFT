@@ -8,9 +8,16 @@ const ProductCatalogCard = ({ product }) => {
   const [stockClass, setStockClass] = useState(""); // State to store the class name for the stock value
   const [stockText, setStockText] = useState(""); // State to store the stock value
 
-  // Function to determine the text to display, based on the stock value
+  // Function to format the price value
+  const formattedPrice = new Intl.NumberFormat('en-ZA', {
+    style: 'currency',
+    currency: 'ZAR',
+    minimumFractionDigits: 0
+  }).format(product.price || 0);
 
+  // useEffect hook to update the stock text and class to display
   useEffect(() => {
+    // Function to determine the text to display, based on the stock value
     const updateStockValue = () => {
       if (product.stock > 10) {
         setStockClass("in-stock");
@@ -39,7 +46,7 @@ const ProductCatalogCard = ({ product }) => {
         <div className="product-catalog-card-details">
           <h2 className="product-catalog-card-title">{ product.name }</h2>
           <p className="product-catalog-card-description">{ product.description }</p>
-          <p className="product-catalog-card-price">R{ product.price }</p>
+          <p className="product-catalog-card-price">{ formattedPrice }</p>
           <p className={stockClass}>{ stockText }</p>
         </div>
       </div>
