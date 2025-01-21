@@ -12,10 +12,14 @@
   width: 50px;
 }
 
+.navbar-search-wrapper {
+  width: 30%;
+}
+
 .navbar-search {
   border-radius: 5px;
   padding: 10px 5px;
-  width: 30%;
+  width: 100%;
 }
 
 .navbar-links {

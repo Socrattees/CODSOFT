@@ -34,6 +34,23 @@ router.get("/:productId", async (req, res) => {
   }
 });
 
+// Get products using a search query
+router.get("/search/search-results", async (req, res) => {
+  const query = req.query.q;
+  try {
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { brand: { $regex: query, $options: "i" } },
+        { categories: { $regex: query, $options: "i" } },
+      ],
+    });
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Update a product by its ID
 router.put("/:productId", async (req, res) => {
   try {
