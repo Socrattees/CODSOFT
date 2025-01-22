@@ -1,0 +1,70 @@
+.login-background {
+  background-image: url("../../../../api/public/victory_vault_login_background.png");
+  background-size: cover;
+  min-height: 100%;
+  color: #dddddd;
+}
+
+.login h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 15vh;
+}
+
+.login label, p {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.login-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  padding: 10px;
+  gap: 10px;
+}
+
+.login-form a {
+  color: orange;
+}
+
+.login-form a:visited {
+  color: orange;
+}
+
+.login-form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.login-form-group input, textarea {
+  padding: 4px;
+  width: 70%;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.login-form-group textarea {
+  height: 200px;
+}
+
+.login-form button {
+  padding: 10px;
+  margin: 30px auto 10px auto;
+  width: 30%;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.login-form-register {
+  text-align: center;
+}
