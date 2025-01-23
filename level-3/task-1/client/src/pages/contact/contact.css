@@ -25,7 +25,8 @@
   gap: 10px;
 }
 
-.contact-form-group input, textarea {
+.contact-form-group input,
+.contact-form-group textarea {
   padding: 4px;
   width: 70%;
   border-radius: 4px;
