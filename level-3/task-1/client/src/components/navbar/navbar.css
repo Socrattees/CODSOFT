@@ -12,6 +12,11 @@
   width: 50px;
 }
 
+.navbar-user {
+  color: white;
+  font-size: 1.2rem;
+}
+
 .navbar-search-wrapper {
   width: 30%;
 }
@@ -36,6 +41,7 @@
 
 .navbar-links li:last-child {
   margin-right: 0;
+  margin-left: 30px;
 }
 
 .navbar-links a {
@@ -47,5 +53,18 @@
 }
 
 .navbar-links a:hover {
+  color: #dddddd;
+}
+
+.navbar-cart-icon {
+  color: white;
+}
+
+.logout {
+  color: white;
+  cursor: pointer;
+}
+
+.logout:hover {
   color: #dddddd;
 }
