@@ -1,10 +1,37 @@
 import axios from "axios";
+import {
+  LoginStart,
+  LoginSuccess,
+  LoginFail
+} from "./context/UserActions";
+
+//AUTH
+
+// Login
+export const loginCall = async (userDetails, dispatch) => {
+  dispatch(LoginStart());
+  try {
+    const res = await axios.post("/api/auth/login", userDetails);
+    dispatch(LoginSuccess(res.data));
+  } catch (err) {
+    dispatch(LoginFail(err));
+  }
+};
+
+// Register new user
+export const registerCall = async (newUserDetails) => {
+  try {
+    await axios.post("/api/auth/register", newUserDetails);
+  } catch (err) {
+    return console.error("Error registering new user: ", err);
+  }
+};
 
 // Get all products
 export const getAllProductsCall = async () => {
   try {
-    const response = await axios.get("/api/products");
-    return response.data;
+    const res = await axios.get("/api/products");
+    return res.data;
   } catch (err) {
     return console.error("Error in retrieving data of all products: ", err);
   }
@@ -13,8 +40,8 @@ export const getAllProductsCall = async () => {
 // Get products by search query
 export const getProductsBySearchCall = async (search) => {
   try {
-    const response = await axios.get(`/api/products/search/search-results?q=${search}`);
-    return response.data;
+    const res = await axios.get(`/api/products/search/search-results?q=${search}`);
+    return res.data;
   } catch (err) {
     return console.error("Error in retrieving data of products by search query: ", err);
   }

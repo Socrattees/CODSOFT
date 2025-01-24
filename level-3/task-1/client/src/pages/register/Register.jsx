@@ -12,7 +12,7 @@ const Register = () => {
   const [retypePassword, setRetypePassword] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
-  const [suburb, setSuburb] = useState(""); // New state for suburb
+  const [suburb, setSuburb] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [postalCode, setPostalCode] = useState("");
@@ -32,7 +32,7 @@ const Register = () => {
     console.log("Password:", password);
     console.log("Date of Birth:", dateOfBirth);
     console.log("Street Address:", streetAddress);
-    console.log("Suburb:", suburb); // Log suburb
+    console.log("Suburb:", suburb);
     console.log("City:", city);
     console.log("State/Province:", state);
     console.log("Postal Code:", postalCode);

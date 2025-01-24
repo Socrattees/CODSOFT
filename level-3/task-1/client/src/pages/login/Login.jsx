@@ -1,29 +1,39 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import Navbar from "../../components/navbar/Navbar";
+import { loginCall } from "../../apiCalls";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { dispatch } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Email:", email);
+    console.log("Username:", username);
     console.log("Password:", password);
+    try {
+      loginCall({ username, password }, dispatch);
+      navigate("/");
+    } catch (err) {
+      console.error("Error logging in: ", err);
+    }
   };
 
-    // useEffect to add background to body of this page
-    useEffect(() => {
-      document.body.classList.add('login-background');
-  
-      // Cleanup function to remove background
-      return () => {
-        document.body.classList.remove('login-background');
-      }
-    }, []);
+  // useEffect to add background to body of this page
+  useEffect(() => {
+    document.body.classList.add('login-background');
+
+    // Cleanup function to remove background
+    return () => {
+      document.body.classList.remove('login-background');
+    }
+  }, []);
 
   return (
     <div className="login">
@@ -32,12 +42,12 @@ const Login = () => {
       <div className="login-form-wrapper">
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-form-group">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="username">Username:</label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>

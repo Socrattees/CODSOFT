@@ -34,7 +34,7 @@ const Home = () => {
     }
   }, [products]);
 
-  console.log(categories);
+  //console.log(categories);
 
   return (
     <div className="home">
