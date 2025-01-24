@@ -19,9 +19,11 @@ export const loginCall = async (userDetails, dispatch) => {
 };
 
 // Register new user
-export const registerCall = async (newUserDetails) => {
+export const registerCall = async (newUserDetails, dispatch) => {
   try {
-    await axios.post("/api/auth/register", newUserDetails);
+    console.log(newUserDetails);
+    await axios.post("/api/auth", newUserDetails);
+    await loginCall({ username: newUserDetails.username, password: newUserDetails.password }, dispatch);
   } catch (err) {
     return console.error("Error registering new user: ", err);
   }

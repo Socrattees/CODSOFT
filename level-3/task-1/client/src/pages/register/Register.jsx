@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import "./register.css";
 import Navbar from "../../components/navbar/Navbar";
+import { registerCall } from "../../apiCalls";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -18,25 +21,36 @@ const Register = () => {
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
 
+  const navigate = useNavigate();
+  const { dispatch } = useContext(UserContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== retypePassword) {
       alert("Passwords do not match!");
       return;
     }
-    // Handle register logic here
-    console.log("Username:", username);
-    console.log("First Name:", firstName);
-    console.log("Surname:", surname);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Date of Birth:", dateOfBirth);
-    console.log("Street Address:", streetAddress);
-    console.log("Suburb:", suburb);
-    console.log("City:", city);
-    console.log("State/Province:", state);
-    console.log("Postal Code:", postalCode);
-    console.log("Country:", country);
+    const newUserDetails = {
+      username,
+      firstName,
+      surname,
+      email,
+      password,
+      dateOfBirth,
+      streetAddress,
+      suburb,
+      city,
+      province: state,
+      postalCode,
+      country
+    }
+    console.log("New User Details: ", newUserDetails);
+    try {
+      registerCall(newUserDetails, dispatch);
+      navigate("/");
+    } catch (err) {
+      console.error("Error registering new user: ", err);
+    }
   };
 
   // useEffect to add background to body of this page

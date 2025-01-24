@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   try {
     const user = new User({
       username: reqData.username,
-      firstname: reqData.firstname,
+      firstName: reqData.firstName,
       surname: reqData.surname,
       email: reqData.email,
       password: hashedPassword,
