@@ -3,7 +3,7 @@ import "./navbar-cart.css";
 import NavbarCartItem from "../navbarCartItem/NavbarCartItem";
 import { updateCartByUserIdCall } from "../../apiCalls";
 
-const NavbarCart = ({ cart, dispatch, setIsCartVisible }) => {
+const NavbarCart = ({ user, cart, dispatch, setIsCartVisible }) => {
   const [total, setTotal] = useState(0);
 
   // Function to set the cart visibility to false
@@ -36,15 +36,17 @@ const NavbarCart = ({ cart, dispatch, setIsCartVisible }) => {
 
   // useEffect to update the cart in the database
   useEffect(() => {
-    const updateCart = async () => {
-      try {
-        await updateCartByUserIdCall(cart.userId, cart);
-      } catch (err) {
-        console.error("Error in updating cart: ", err);
-      }
-    };
-    updateCart();
-  }, [cart]);
+    if (user) {
+      const updateCart = async () => {
+        try {
+          await updateCartByUserIdCall(cart.userId, cart);
+        } catch (err) {
+          console.error("Error in updating cart: ", err);
+        }
+      };
+      updateCart();
+    }
+  }, [cart, user]);
 
   return (
     <div className="navbar-cart">
@@ -55,7 +57,7 @@ const NavbarCart = ({ cart, dispatch, setIsCartVisible }) => {
       <ul className="navbar-cart-items">
         {cart.items.map((item) => (
           <li key={item.productId}>
-            <NavbarCartItem item={item} formattedPrice={formattedPrice} removeItem={removeItem} />
+            <NavbarCartItem item={item} formattedPrice={formattedPrice} removeItem={removeItem} dispatch={dispatch} />
           </li>
         ))}
       </ul>

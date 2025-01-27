@@ -75,7 +75,7 @@ const Navbar = () => {
           : <Link to="/login">Login</Link>}
         </li>
       </ul>
-      {isCartVisible && <NavbarCart cart={cart} dispatch={dispatch} setIsCartVisible={setIsCartVisible} />} {/* Conditionally render the ShoppingCart component */}
+      {isCartVisible && <NavbarCart user={user} cart={cart} dispatch={dispatch} setIsCartVisible={setIsCartVisible} />} {/* Conditionally render the ShoppingCart component */}
     </nav>
   );
 };

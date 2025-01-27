@@ -12,7 +12,7 @@ const INITIAL_STATE = {
    if not, it will set it to null */
 
    user: getLocalStorageItem("user", null),
-   cart: getLocalStorageItem("cart", []),
+   cart: getLocalStorageItem("cart", [{ userId: "Guest", items: [] }]),
    isFetching: false,
    error: false
 };

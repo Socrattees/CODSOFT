@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './navbar-cart-item.css';
 
-const NavbarCartItem = ({ item, removeItem, formattedPrice }) => {
+const NavbarCartItem = ({ item, removeItem, formattedPrice, dispatch }) => {
   const [quantity, setQuantity] = useState(item.quantity);
 
   const handleQuantityChange = (e) => {
@@ -12,6 +12,11 @@ const NavbarCartItem = ({ item, removeItem, formattedPrice }) => {
       setQuantity(1);
     }
   };
+
+  // useEffect to update the quantity in the cart
+  useEffect(() => {
+    dispatch({ type: "UPDATE_QUANTITY", payload: { product: item, quantity: quantity } });
+  }, [quantity, dispatch, item]);
 
   return (
     <div className="navbar-cart-item">
