@@ -29,6 +29,8 @@ export const registerCall = async (newUserDetails, dispatch) => {
   }
 };
 
+//PRODUCTS
+
 // Get all products
 export const getAllProductsCall = async () => {
   try {
@@ -48,3 +50,25 @@ export const getProductsBySearchCall = async (search) => {
     return console.error("Error in retrieving data of products by search query: ", err);
   }
 }
+
+//CART
+
+// Get cart by userId
+export const getCartByUserIdCall = async (userId) => {
+  try {
+    const res = await axios.get(`/api/carts/${userId}`);
+    return res.data;
+  } catch (err) {
+    return console.error("Error in retrieving cart by userId: ", err);
+  }
+};
+
+// Update cart by userId
+export const updateCartByUserIdCall = async (userId, cart) => {
+  console.log ("cart", cart);
+  try {
+    await axios.put(`/api/carts/update/${userId}`, cart );
+  } catch (err) {
+    return console.error("Error in updating cart by userId: ", err);
+  }
+};

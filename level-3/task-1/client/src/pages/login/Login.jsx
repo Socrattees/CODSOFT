@@ -15,8 +15,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
     try {
       loginCall({ username, password }, dispatch);
       navigate("/");

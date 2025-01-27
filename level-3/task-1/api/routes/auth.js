@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../models/User.js';
 import Address from '../models/Address.js';
+import Cart from '../models/Cart.js';
 import bcrypt from 'bcrypt';
 
 const router = express.Router();
@@ -28,6 +29,13 @@ router.post('/login', async (req, res) => {
 router.post('/', async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const reqData = req.body;
+
+  // Check if username already exists before creating a new user
+  const existingUser = await User.findOne({ username: reqData.username });
+  if (existingUser) {
+    return res.status(409).json("Username already exists!");
+  }
+
   const hashedPassword = await bcrypt.hash(reqData.password, salt);
   const address = new Address({
     streetAddress: reqData.streetAddress,
@@ -51,6 +59,8 @@ router.post('/', async (req, res) => {
     user.address = address;
     await address.save();
     const savedUser = await user.save(); 
+    const cart = new Cart({ userId: savedUser._id, items: [] });
+    await cart.save();
     res.status(201).json(savedUser);
   } catch (err) {
     res.status(500).json(err);

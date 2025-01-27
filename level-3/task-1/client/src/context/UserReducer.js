@@ -24,6 +24,30 @@ const UserReducer = (state, action) => {
         isFetching: false,
         error: false
       };
+    case "SET_CART":
+      return {
+        ...state,
+        cart: action.payload
+      };
+    case "ADD_TO_CART":
+      return {
+        ...state,
+        cart: [...state.cart, action.payload]
+      };
+      case "REMOVE_FROM_CART":
+        return {
+          ...state,
+          cart: {
+            ...state.cart,
+            items: state.cart.items.filter((item) => item.productId !== action.payload)
+          }
+        };
+      
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cart: []
+      };
     default:
       return state;
   }

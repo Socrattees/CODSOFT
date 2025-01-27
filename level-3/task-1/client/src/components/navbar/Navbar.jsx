@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./navbar.css";
-import { useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
-/* Navigation bar component that displays the logo, search bar,
-and links that sits at the top of the page */
+import NavbarCart from "../navbarCart/NavbarCart"; // Import your ShoppingCart component
+import { getCartByUserIdCall } from "../../apiCalls";
 
 const Navbar = () => {
-  const { user } = useContext(UserContext);
+  const { user, cart, dispatch } = useContext(UserContext);
   const [search, setSearch] = useState("");
+  const [isCartVisible, setIsCartVisible] = useState(false); // State to manage cart visibility
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -20,10 +19,33 @@ const Navbar = () => {
     console.log(search);
   };
 
+  // Function to remove user and cart from local storage after logout
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("cart");
     window.location.reload();
   };
+
+  const toggleCartVisibility = () => {
+    setIsCartVisible(!isCartVisible);
+  };
+
+  /* useEffect to get the cart by userId
+  from the server to have the latest cart data in context
+  and local storage */
+  useEffect(() => {
+    if (user) {
+      const getCart = async () => {
+        try {
+          const res = await getCartByUserIdCall(user._id);
+          dispatch({ type: "SET_CART", payload: res });
+        } catch (err) {
+          console.error("Error in getting cart: ", err);
+        }
+      }
+      getCart();
+    }
+  }, [user, dispatch]);
 
   return (
     <nav className="navbar">
@@ -46,13 +68,14 @@ const Navbar = () => {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li>
-          <ShoppingCartIcon className="navbar-cart-icon" />
+          <ShoppingCartIcon className="navbar-cart-icon" onClick={toggleCartVisibility} />
         </li>
         <li>{ user ?
           <span className="logout" onClick={handleLogout}>Logout</span>
           : <Link to="/login">Login</Link>}
         </li>
       </ul>
+      {isCartVisible && <NavbarCart cart={cart} dispatch={dispatch} setIsCartVisible={setIsCartVisible} />} {/* Conditionally render the ShoppingCart component */}
     </nav>
   );
 };

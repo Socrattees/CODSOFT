@@ -7,9 +7,11 @@ import path from "path";
 import productRouter from "./routes/products.js";
 import userRouter from "./routes/users.js";
 import authRouter from "./routes/auth.js";
+import cartRouter from "./routes/carts.js";
 import { fileURLToPath } from "url";
 
 const app = express();
+
 
 // Database connection to MongoDB
 mongoose.connect(process.env.MONGO_URL).then(() => {
@@ -30,6 +32,7 @@ app.use(morgan("common"));
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/carts", cartRouter);
 
 // Server
 app.listen(8800, () => {
