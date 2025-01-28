@@ -3,7 +3,7 @@
   top: 100px; /* Adjust based on your navbar height */
   right: 20px;
   width: 300px;
-  max-height: 400px;
+  max-height: 450px;
   overflow-y: auto;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -33,6 +33,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .navbar-cart-item {
@@ -40,11 +42,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.navbar-cart-item:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid gray;
 }
 
 .navbar-cart-item-name {

@@ -14,9 +14,15 @@ const NavbarCartItem = ({ item, removeItem, formattedPrice, dispatch }) => {
   };
 
   // useEffect to update the quantity in the cart
-  useEffect(() => {
-    dispatch({ type: "UPDATE_QUANTITY", payload: { product: item, quantity: quantity } });
-  }, [quantity, dispatch, item]);
+   useEffect(() => {
+     dispatch({ type: "UPDATE_QUANTITY", payload: { product: item, quantity: quantity } });
+     // eslint-disable-next-line
+   }, [quantity, dispatch, item.productId]);
+
+   // useEffect to update the quantity in the cart when change is made outside the component
+    useEffect(() => {
+      setQuantity(item.quantity);
+    }, [item.quantity]);
 
   return (
     <div className="navbar-cart-item">

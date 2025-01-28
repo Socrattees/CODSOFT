@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './product-catalog-card.css';
+import { UserContext } from '../../context/UserContext';
 
 /* Product catalog card component that displays product details
 in the Product Catalog component */
@@ -7,6 +8,7 @@ in the Product Catalog component */
 const ProductCatalogCard = ({ product }) => {
   const [stockClass, setStockClass] = useState(""); // State to store the class name for the stock value
   const [stockText, setStockText] = useState(""); // State to store the stock value
+  const {cart, dispatch } = useContext(UserContext);
 
   // Function to format the price value
   const formattedPrice = new Intl.NumberFormat('en-ZA', {
@@ -14,6 +16,24 @@ const ProductCatalogCard = ({ product }) => {
     currency: 'ZAR',
     minimumFractionDigits: 0
   }).format(product.price || 0);
+
+  // Function to add a product to the cart
+  const handleAddToCart = () => {
+    const foundItem = cart.items.find((item) => item.productId === product._id);
+    if (foundItem) {
+      dispatch({ type: "UPDATE_QUANTITY", payload: { product: foundItem, quantity: foundItem.quantity + 1 } });
+    } else {
+      const newCartItem = {
+        productId: product._id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      }
+      console.log(newCartItem);
+      dispatch({ type: "ADD_TO_CART", payload: newCartItem });
+    }
+  }
 
   // useEffect hook to update the stock text and class to display
   useEffect(() => {
@@ -50,7 +70,7 @@ const ProductCatalogCard = ({ product }) => {
           <p className={stockClass}>{ stockText }</p>
         </div>
       </div>
-      <button className="product-catalog-card-button">Add to Cart</button>
+      <button className="product-catalog-card-button" onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 };
