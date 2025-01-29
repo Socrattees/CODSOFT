@@ -58,6 +58,7 @@ const Checkout = () => {
         return alert("Some item(s) in your cart have insufficient stock. Setting affected item(s) to maximum available quantity");
       }
       console.log("All items are in stock. Proceeding to payment...");
+      navigate('/checkout/payment', { state: { fromCheckout: true } });
     } catch (err) {
       console.error("Error processing stock of items: ", err);
     }

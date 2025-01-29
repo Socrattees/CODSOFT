@@ -8,6 +8,8 @@ import Contact from './pages/contact/Contact';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Checkout from './pages/checkout/Checkout';
+import Payment from './pages/payment/Payment';
+import PaymentSummary from './pages/paymentSummary/PaymentSummary';
 import SearchResults from './pages/searchResults/SearchResults';
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
         <Route path="/search/search-results" element={<SearchResults />} />
         <Route path="/checkout" element={cart.items ? <Checkout /> : <Navigate to="/" />} />
+        <Route path="/checkout/payment" element={<Payment />} />
+        <Route path="/checkout/payment-summary" element={<PaymentSummary />} />
       </>
   ));
 
