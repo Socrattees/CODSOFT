@@ -21,7 +21,6 @@ export const loginCall = async (userDetails, dispatch) => {
 // Register new user
 export const registerCall = async (newUserDetails, dispatch) => {
   try {
-    console.log(newUserDetails);
     await axios.post("/api/auth", newUserDetails);
     await loginCall({ username: newUserDetails.username, password: newUserDetails.password }, dispatch);
   } catch (err) {
@@ -65,10 +64,31 @@ export const getCartByUserIdCall = async (userId) => {
 
 // Update cart by userId
 export const updateCartByUserIdCall = async (userId, cart) => {
-  console.log ("cart", cart);
   try {
     await axios.put(`/api/carts/update/${userId}`, cart );
   } catch (err) {
     return console.error("Error in updating cart by userId: ", err);
   }
 };
+
+//CHECKOUT
+
+// Check if cart products still exist
+export const checkCartProductsExistCall = async (cart) => {
+  try {
+    const res = await axios.post("/api/checkout/exist", cart);
+    return res.data;
+  } catch (err) {
+    return console.error("Error checking cart products availability: ", err);
+  }
+}
+
+// Check if cart products are still in stock
+export const checkCartProductsInStockCall = async (cart) => {
+  try {
+    const res = await axios.post("/api/checkout/stock-check", cart);
+    return res.data;
+  } catch (err) {
+    return console.error("Error checking cart products stock availability: ", err);
+  }
+}

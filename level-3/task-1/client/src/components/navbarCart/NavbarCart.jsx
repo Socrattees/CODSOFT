@@ -2,13 +2,22 @@ import React, { useState, useEffect } from "react";
 import "./navbar-cart.css";
 import NavbarCartItem from "../navbarCartItem/NavbarCartItem";
 import { updateCartByUserIdCall } from "../../apiCalls";
+import { useNavigate } from "react-router-dom";
 
 const NavbarCart = ({ user, cart, dispatch, setIsCartVisible }) => {
   const [total, setTotal] = useState(0);
 
+  const navigate = useNavigate();
+
   // Function to set the cart visibility to false
   const handleCloseCart = () => {
     setIsCartVisible(false);
+  };
+
+  // Function to handle the checkout
+  const handleCheckout = () => {
+    console.log("Starting checkout process...");
+    navigate("/checkout");
   };
 
   // Function to format the price value
@@ -21,9 +30,20 @@ const NavbarCart = ({ user, cart, dispatch, setIsCartVisible }) => {
   };
 
   // Function to remove an item from the cart
-  const removeItem = (productId) => {
+  const handleRemoveItem = (productId) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: productId });
   };
+
+  // useEffect to disable checkout button if cart is empty
+  useEffect(() => {
+    const checkoutButton = document.querySelector(".navbar-cart-checkout");
+    if (cart.items.length === 0) {
+      checkoutButton.disabled = true;
+    } else {
+      checkoutButton.disabled = false;
+    }
+    console.log(checkoutButton.disabled);
+  }, [cart.items]);
 
   // useEffect to update the total value
   useEffect(() => {
@@ -57,7 +77,7 @@ const NavbarCart = ({ user, cart, dispatch, setIsCartVisible }) => {
       <ul className="navbar-cart-items">
         {cart.items.map((item) => (
           <li key={item.productId}>
-            <NavbarCartItem item={item} formattedPrice={formattedPrice} removeItem={removeItem} dispatch={dispatch} />
+            <NavbarCartItem item={item} formattedPrice={formattedPrice} handleRemoveItem={handleRemoveItem} dispatch={dispatch} />
           </li>
         ))}
       </ul>
@@ -65,7 +85,7 @@ const NavbarCart = ({ user, cart, dispatch, setIsCartVisible }) => {
         <span>Total:</span>
         <span>{ formattedPrice(total) }</span>
       </div>
-      <button className="navbar-cart-checkout">Checkout</button>
+      <button className="navbar-cart-checkout" onClick={handleCheckout}>Checkout</button>
     </div>
   );
 };

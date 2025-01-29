@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./navbar.css";
 import { UserContext } from "../../context/UserContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavbarCart from "../navbarCart/NavbarCart"; // Import your ShoppingCart component
 import { getCartByUserIdCall } from "../../apiCalls";
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [search, setSearch] = useState("");
   const [isCartVisible, setIsCartVisible] = useState(false); // State to manage cart visibility
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -27,7 +28,9 @@ const Navbar = () => {
   };
 
   const toggleCartVisibility = () => {
-    setIsCartVisible(!isCartVisible);
+    if (!location.pathname.includes("/checkout")) {
+      setIsCartVisible(!isCartVisible);
+    }
   };
 
   /* useEffect to get the cart by userId

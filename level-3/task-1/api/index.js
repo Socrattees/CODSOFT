@@ -8,6 +8,7 @@ import productRouter from "./routes/products.js";
 import userRouter from "./routes/users.js";
 import authRouter from "./routes/auth.js";
 import cartRouter from "./routes/carts.js";
+import checkoutRouter from "./routes/checkout.js";
 import { fileURLToPath } from "url";
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/carts", cartRouter);
+app.use("/api/checkout", checkoutRouter);
 
 // Server
 app.listen(8800, () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './navbar-cart-item.css';
 
-const NavbarCartItem = ({ item, removeItem, formattedPrice, dispatch }) => {
+const NavbarCartItem = ({ item, handleRemoveItem, formattedPrice, dispatch }) => {
   const [quantity, setQuantity] = useState(item.quantity);
 
   const handleQuantityChange = (e) => {
@@ -39,7 +39,7 @@ const NavbarCartItem = ({ item, removeItem, formattedPrice, dispatch }) => {
             onChange={handleQuantityChange} 
           />
         </div>
-        <button className="navbar-cart-item-remove" onClick={() => removeItem(item.productId)}>Remove</button>
+        <button className="navbar-cart-item-remove" onClick={() => handleRemoveItem(item.productId)}>Remove</button>
       </div>
     </div>
   );
