@@ -22,9 +22,12 @@ const Navbar = () => {
 
   // Function to remove user and cart from local storage after logout
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("cart");
-    window.location.reload();
+    const logoutConfirm = window.confirm("Are you sure you want to logout?");
+    if (logoutConfirm) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("cart");
+      window.location.reload();
+    }
   };
 
   const toggleCartVisibility = () => {

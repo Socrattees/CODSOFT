@@ -24,7 +24,7 @@ function App() {
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
         <Route path="/search/search-results" element={<SearchResults />} />
-        <Route path="/checkout" element={cart.items ? <Checkout /> : <Navigate to="/" />} />
+        <Route path="/checkout" element={cart && cart.items ? <Checkout /> : <Navigate to="/" />} />
         <Route path="/checkout/payment" element={<Payment />} />
         <Route path="/checkout/payment-summary" element={<PaymentSummary />} />
       </>
