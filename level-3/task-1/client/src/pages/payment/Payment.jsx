@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./payment.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
+import valid from "card-validator";
 
 const Payment = () => {
   const [loading, setLoading] = useState(true);
@@ -9,12 +10,30 @@ const Payment = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const cardValidation = valid.number(cardNumber);
+    const expiryValidation = valid.expirationDate(expiryDate);
+    const cvvValidation = valid.cvv(cvv);
+
+    if (!cardValidation.isValid) {
+      setError("Invalid card number");
+      return;
+    }
+    if (!expiryValidation.isValid) {
+      setError("Invalid expiry date");
+      return;
+    }
+    if (!cvvValidation.isValid) {
+      setError("Invalid CVV");
+      return;
+    }
+
     // Handle payment submission logic here
     console.log("Payment submitted", { cardNumber, expiryDate, cvv, name });
     navigate("/checkout/payment-summary", { state: { fromPayment: true, cardNumber: cardNumber } });
@@ -83,6 +102,7 @@ const Payment = () => {
             <button type="button" onClick={() => navigate("/checkout")}>Cancel Payment</button>
             <button type="submit">Submit Payment</button>
           </div>
+          {error && <div className="error">{error}</div>}
         </form>
       </div>
     </div>

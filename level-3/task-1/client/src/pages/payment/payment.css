@@ -47,8 +47,8 @@
   gap: 10px;
 }
 
-button[type="button"],
-button[type="submit"] {
+.buttons button[type="button"],
+.buttons button[type="submit"] {
   padding: 10px 15px;
   margin-top: 10px;
   background-color: #4CAF50;
@@ -59,14 +59,20 @@ button[type="submit"] {
   font-weight: 500;
 }
 
-button[type="button"] {
+.buttons button[type="button"] {
   background-color: #f44336;
 }
 
-button[type="button"]:hover {
+.buttons button[type="button"]:hover {
   background-color: #d32f2f;
 }
 
-button[type="submit"]:hover {
+.buttons button[type="submit"]:hover {
   background-color: #45a049;
+}
+
+.payment-form .error {
+  margin: 20px auto 0 auto;
+  color: red;
+  font-size: 0.8rem;
 }

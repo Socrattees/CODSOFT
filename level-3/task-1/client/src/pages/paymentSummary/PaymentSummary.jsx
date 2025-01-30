@@ -30,6 +30,11 @@ const PaymentSummary = () => {
     cardNumber: location.state.cardNumber || "**** **** **** 1234",
   };
 
+  // Function to mask the card number
+  const maskCardNumber = (cardNumber) => {
+    return cardNumber.slice(-4).padStart(cardNumber.length, '*');
+  };
+
   // Function to format the price value
   const formattedPrice = (total) => {
     return new Intl.NumberFormat("en-ZA", {
@@ -81,7 +86,7 @@ const PaymentSummary = () => {
         <div className="payment-summary-details-group">
           <h2>Payment Method</h2>
           <p><span>Card Type:</span> {paymentMethod.cardType}</p>
-          <p><span>Card Number:</span> {paymentMethod.cardNumber}</p>
+          <p><span>Card Number:</span> {maskCardNumber(paymentMethod.cardNumber)}</p>
         </div>
         <p><span>Total:</span> {formattedPrice(calculateTotalPrice())}</p>
         <div className="payment-summary-buttons">
