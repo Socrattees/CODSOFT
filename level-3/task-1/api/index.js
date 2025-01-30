@@ -8,6 +8,7 @@ import productRouter from "./routes/products.js";
 import userRouter from "./routes/users.js";
 import authRouter from "./routes/auth.js";
 import cartRouter from "./routes/carts.js";
+import messageRouter from "./routes/messages.js";
 import checkoutRouter from "./routes/checkout.js";
 import TransactionRouter from "./routes/transactions.js";
 import { fileURLToPath } from "url";
@@ -35,6 +36,7 @@ app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/carts", cartRouter);
+app.use("/api/messages", messageRouter);
 app.use("/api/checkout", checkoutRouter);
 app.use("/api/transactions", TransactionRouter);
 

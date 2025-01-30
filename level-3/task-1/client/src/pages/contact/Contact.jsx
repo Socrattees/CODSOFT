@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./contact.css";
 import Navbar from "../../components/navbar/Navbar";
+import { createMessageCall } from "../../apiCalls";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,19 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log("Form data submitted:", formData);
+    const createMessage = async () => {
+      try {
+        await createMessageCall(formData);
+      } catch (err) {
+        console.log("Error creating new message: ", err);
+      }
+    };
+    createMessage();
+    setFormData({
+      name: "",
+      email: "",
+      message: ""
+    });
     window.alert("Message successfully sent!");
   };
 

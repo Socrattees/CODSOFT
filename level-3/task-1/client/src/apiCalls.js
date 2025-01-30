@@ -71,6 +71,17 @@ export const updateCartByUserIdCall = async (userId, cart) => {
   }
 };
 
+//MESSAGES
+
+// Create a new message
+export const createMessageCall = async (newMessage) => {
+  try {
+    await axios.post("/api/messages", newMessage);
+  } catch (err) {
+    return console.error("Error creating new message: ", err);
+  }
+};
+
 //CHECKOUT
 
 // Check if cart products still exist
