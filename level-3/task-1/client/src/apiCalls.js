@@ -92,3 +92,23 @@ export const checkCartProductsInStockCall = async (cart) => {
     return console.error("Error checking cart products stock availability: ", err);
   }
 }
+
+// Clear cart by userId
+export const clearCartByUserIdCall = async (userId) => {
+  try {
+    await axios.put(`/api/carts/clear/${userId}`);
+  } catch (err) {
+    return console.error("Error clearing cart by userId: ", err);
+  }
+};
+
+//TRANSACTIONS
+
+// Create a transaction
+export const createTransactionCall = async (newTransaction) => {
+  try {
+    await axios.post("/api/transactions", newTransaction);
+  } catch (err) {
+    return console.error("Error creating transaction: ", err);
+  }
+};

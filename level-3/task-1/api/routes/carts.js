@@ -48,6 +48,24 @@ router.put("/update/:userId", async (req, res) => {
   }
 });
 
+// Clear cart by userId
+router.put("/clear/:userId", async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.params.userId });
+    if (!cart) {
+      return res.status(404).json("Cart not found");
+    }
+
+    await Cart.findByIdAndUpdate(cart._id, {
+      $set: { items: [] }
+    }, { new: true });
+
+    return res.status(200).json("Cart has been cleared");
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 
 // Delete cart by userId
 router.delete("/delete/:userId", async (req, res) => {

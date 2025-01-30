@@ -17,9 +17,16 @@ const Payment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const cardHolderNameValid = valid.cardholderName(name);
     const cardValidation = valid.number(cardNumber);
+    const cartType = valid.number(cardNumber).card.niceType;
     const expiryValidation = valid.expirationDate(expiryDate);
     const cvvValidation = valid.cvv(cvv);
+
+    if (!cardHolderNameValid.isValid) {
+      setError("Invalid card holder name");
+      return;
+    }
 
     if (!cardValidation.isValid) {
       setError("Invalid card number");
@@ -36,7 +43,7 @@ const Payment = () => {
 
     // Handle payment submission logic here
     console.log("Payment submitted", { cardNumber, expiryDate, cvv, name });
-    navigate("/checkout/payment-summary", { state: { fromPayment: true, cardNumber: cardNumber } });
+    navigate("/checkout/payment-summary", { state: { fromPayment: true, name, cardNumber, cartType, expiryDate, cvv } });
   };
 
   useEffect(() => {
