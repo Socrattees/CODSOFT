@@ -28,6 +28,27 @@ export const registerCall = async (newUserDetails, dispatch) => {
   }
 };
 
+//USERS
+
+// Get user by id
+export const getUserByIdCall = async (userId) => {
+  try {
+    const res = await axios.get(`/api/users/${userId}`);
+    return res.data;
+  } catch (err) {
+    return console.error("Error in retrieving user by id: ", err);
+  }
+};
+
+// Update user details
+export const updateUserDetailsCall = async (userId, updatedUserDetails) => {
+  try {
+    await axios.put(`/api/users/update/${userId}`, updatedUserDetails);
+  } catch (err) {
+    return console.error("Error updating user details: ", err);
+  }
+};
+
 //PRODUCTS
 
 // Get all products

@@ -16,3 +16,10 @@ a {
 h1 {
   font-size: 3rem;
 }
+
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+  
+}

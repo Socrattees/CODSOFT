@@ -24,7 +24,12 @@ const UserReducer = (state, action) => {
         cart: { userId: "Guest", items: [] },
         isFetching: false,
         error: false
-      };     
+      };
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: action.payload
+      };
     case "SET_CART":
       return {
         ...state,

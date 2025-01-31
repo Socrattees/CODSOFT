@@ -18,6 +18,12 @@ export const LogOut = () => ({
   type: "LOG_OUT"
 });
 
+//USER ACTIONS
+export const UpdateUser = (user) => ({
+  type: "UPDATE_USER",
+  payload: user
+});
+
 //CART ACTIONS
 
 export const SetCart = (cart) => ({
