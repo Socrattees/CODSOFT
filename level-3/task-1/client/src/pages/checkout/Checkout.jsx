@@ -52,7 +52,13 @@ const Checkout = () => {
         unavailableStock.forEach((stockItem) => {
           const cartItem = cart.items.find((item) => item.productId === stockItem.productId);
           if (cartItem) {
-            dispatch({ type: 'UPDATE_QUANTITY', payload: { product: cartItem, quantity: stockItem.availableStock } });
+            dispatch({
+              type: 'UPDATE_QUANTITY',
+              payload: {
+                product: cartItem,
+                quantity: stockItem.availableStock
+              }
+            });
           }
         });
         return alert("Some item(s) in your cart have insufficient stock. Setting affected item(s) to maximum available quantity");
@@ -95,19 +101,31 @@ const Checkout = () => {
   }, [cart]);
 
   return (
-  <div className="checkout">
+    <div className="checkout">
       <Navbar />
       <h1>Checkout</h1>
       <div className="cart-items-wrapper"> 
         <div className="cart-items">
           {cart.items.map(item => (
-            <CheckoutItem key={item.productId} item={item} handleRemoveItem={handleRemoveItem} dispatch={dispatch} formattedPrice={formattedPrice} />
+            <CheckoutItem
+              key={item.productId}
+              item={item}
+              handleRemoveItem={handleRemoveItem}
+              dispatch={dispatch}
+              formattedPrice={formattedPrice}
+            />
           ))}
         </div>
         <div className="total">
           <h2>Total: {formattedPrice(total)}</h2>
         </div>
-        <button className="checkout-payment-button" onClick={handleCheckoutPayment}>Proceed to Payment</button>
+        <button 
+          className="checkout-payment-button" 
+          onClick={handleCheckoutPayment}
+          aria-label="Proceed to Payment"
+        >
+          Proceed to Payment
+        </button>
       </div>
     </div>
   );

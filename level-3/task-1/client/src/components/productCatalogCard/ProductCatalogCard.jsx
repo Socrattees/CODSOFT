@@ -20,9 +20,14 @@ const ProductCatalogCard = ({ product }) => {
   // Function to add a product to the cart
   const handleAddToCart = () => {
     const foundItem = cart.items.find((item) => item.productId === product._id);
+    // If the product is already in the cart, update the quantity by 1
     if (foundItem) {
-      dispatch({ type: "UPDATE_QUANTITY", payload: { product: foundItem, quantity: foundItem.quantity + 1 } });
+      dispatch({
+        type: "UPDATE_QUANTITY",
+        payload: { product: foundItem, quantity: foundItem.quantity + 1 }
+      });
     } else {
+      // If the product is not in the cart, add it to the cart with a quantity of 1
       const newCartItem = {
         productId: product._id,
         name: product.name,
@@ -30,7 +35,6 @@ const ProductCatalogCard = ({ product }) => {
         image: product.image,
         quantity: 1
       }
-      console.log(newCartItem);
       dispatch({ type: "ADD_TO_CART", payload: newCartItem });
     }
   }
@@ -54,7 +58,7 @@ const ProductCatalogCard = ({ product }) => {
   }, [product.stock]);
 
   return (
-    <div className="product-catalog-card">
+    <div className="product-catalog-card" aria-label={`Product card for ${product.name}`}>
       <div className="product-catalog-card-content-wrapper">
         <div className="product-catalog-card-image-wrapper">
           <img
@@ -67,10 +71,10 @@ const ProductCatalogCard = ({ product }) => {
           <h2 className="product-catalog-card-title">{ product.name }</h2>
           <p className="product-catalog-card-description">{ product.description }</p>
           <p className="product-catalog-card-price">{ formattedPrice }</p>
-          <p className={stockClass}>{ stockText }</p>
+          <p className={stockClass} aria-live="polite">{ stockText }</p>
         </div>
       </div>
-      <button className="product-catalog-card-button" onClick={handleAddToCart}>Add to Cart</button>
+      <button className="product-catalog-card-button" onClick={handleAddToCart} aria-label={`Add ${product.name} to cart`}>Add to Cart</button>
     </div>
   );
 };

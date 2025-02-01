@@ -34,18 +34,16 @@ const Home = () => {
     }
   }, [products]);
 
-  //console.log(categories);
-
   return (
     <div className="home">
       <Navbar />
-      <div className="header-message">
+      <div className="header-message" aria-label="Welcome message">
         <h1>Welcome</h1>
         <h1>to</h1>
         <h1>Victory Vault!</h1>
       </div>
       { categories.map(category => (
-        <ProductCatalog products={products} key={category} category={category} />
+        <ProductCatalog products={products} key={category} category={category} aria-label={`Product catalog for ${category}`} />
       )) }
     </div>
   );

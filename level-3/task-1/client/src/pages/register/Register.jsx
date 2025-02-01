@@ -24,12 +24,15 @@ const Register = () => {
   const navigate = useNavigate();
   const { dispatch } = useContext(UserContext);
 
+  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Check if passwords match
     if (password !== retypePassword) {
       alert("Passwords do not match!");
       return;
     }
+    // Create object with user details to send to server
     const newUserDetails = {
       username,
       firstName,
@@ -44,7 +47,6 @@ const Register = () => {
       postalCode,
       country
     }
-    console.log("New User Details: ", newUserDetails);
     try {
       registerCall(newUserDetails, dispatch);
       navigate("/");
@@ -77,6 +79,8 @@ const Register = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Username"
             />
           </div>
           <div className="register-form-group">
@@ -87,6 +91,8 @@ const Register = () => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
+              aria-required="true"
+              aria-label="First Name"
             />
           </div>
           <div className="register-form-group">
@@ -97,6 +103,8 @@ const Register = () => {
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Surname"
             />
           </div>
           <div className="register-form-group">
@@ -107,6 +115,8 @@ const Register = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Email"
             />
           </div>
           <div className="register-form-group">
@@ -117,6 +127,8 @@ const Register = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Password"
             />
           </div>
           <div className="register-form-group">
@@ -127,6 +139,8 @@ const Register = () => {
               value={retypePassword}
               onChange={(e) => setRetypePassword(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Retype Password"
             />
           </div>
           <div className="register-form-group">
@@ -137,6 +151,8 @@ const Register = () => {
               value={dateOfBirth}
               onChange={(e) => setDateOfBirth(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Date of Birth"
             />
           </div>
           <div className="register-form-group">
@@ -147,6 +163,8 @@ const Register = () => {
               value={streetAddress}
               onChange={(e) => setStreetAddress(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Street Address"
             />
           </div>
           <div className="register-form-group">
@@ -157,6 +175,8 @@ const Register = () => {
               value={suburb}
               onChange={(e) => setSuburb(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Suburb"
             />
           </div>
           <div className="register-form-group">
@@ -167,6 +187,8 @@ const Register = () => {
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
+              aria-required="true"
+              aria-label="City"
             />
           </div>
           <div className="register-form-group">
@@ -177,6 +199,8 @@ const Register = () => {
               value={state}
               onChange={(e) => setState(e.target.value)}
               required
+              aria-required="true"
+              aria-label="State/Province"
             />
           </div>
           <div className="register-form-group">
@@ -187,6 +211,8 @@ const Register = () => {
               value={postalCode}
               onChange={(e) => setPostalCode(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Postal Code"
             />
           </div>
           <div className="register-form-group">
@@ -197,9 +223,11 @@ const Register = () => {
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Country"
             />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit" aria-label="Register button">Register</button>
         </form>
       </div>
     </div>

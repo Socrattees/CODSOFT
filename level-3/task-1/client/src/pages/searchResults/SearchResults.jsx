@@ -28,7 +28,11 @@ const SearchResults = () => {
     <div className="search-results">
       <Navbar />
       <h1>Search Results</h1>
-      <div className={ products.length > 0 ? "search-results-list" : "search-results-no-list" }>
+      <div 
+        className={ products.length > 0 ? "search-results-list" : "search-results-no-list" }
+        aria-live="polite"
+        aria-atomic="true"
+      >
         { products.length > 0 ? (
           products.map((product) => (
             <ProductCatalogCard key={product._id} product={product} />

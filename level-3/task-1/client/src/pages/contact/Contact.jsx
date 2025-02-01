@@ -11,6 +11,7 @@ const Contact = () => {
     message: ""
   });
 
+  // Function to handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,9 +20,10 @@ const Contact = () => {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    // Forward message to server
     const createMessage = async () => {
       try {
         await createMessageCall(formData);
@@ -30,6 +32,7 @@ const Contact = () => {
       }
     };
     createMessage();
+    // Reset form data and show alert
     setFormData({
       name: "",
       email: "",
@@ -43,7 +46,7 @@ const Contact = () => {
       <Navbar />
       <h1>Contact Us</h1>
       <div className="contact-form-wrapper">
-        <form onSubmit={handleSubmit} className="contact-form">
+        <form onSubmit={handleSubmit} className="contact-form" aria-label="Contact Form">
           <div className="contact-form-group">
             <label htmlFor="name">Name:</label>
             <input
@@ -53,6 +56,8 @@ const Contact = () => {
               value={formData.name}
               onChange={handleChange}
               required
+              aria-required="true"
+              aria-label="Name"
             />
           </div>
           <div className="contact-form-group">
@@ -64,6 +69,8 @@ const Contact = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              aria-required="true"
+              aria-label="Email"
             />
           </div>
           <div className="contact-form-group">
@@ -74,9 +81,11 @@ const Contact = () => {
               value={formData.message}
               onChange={handleChange}
               required
+              aria-required="true"
+              aria-label="Message"
             ></textarea>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" aria-label="Submit">Submit</button>
         </form>
       </div>
     </div>

@@ -18,7 +18,7 @@ const About = () => {
     <div className="about">
       <Navbar />
       <h1>About Us</h1>
-      <div className="about-text">
+      <div className="about-text" aria-label="About Victory Vault">
         <p>
           Welcome to Victory Vault, 
           your ultimate destination for all things gaming! 

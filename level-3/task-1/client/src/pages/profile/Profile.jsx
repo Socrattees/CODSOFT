@@ -79,7 +79,7 @@ const Profile = () => {
       <Navbar />
       <h1>Profile</h1>
       <div className="profile-form-wrapper">
-        <form className="profile-form" onSubmit={handleSubmit}>
+        <form className="profile-form" onSubmit={handleSubmit} aria-label="Profile Form">
           <div className="profile-form-group">
             <label htmlFor="username">Username:</label>
             <input
@@ -89,6 +89,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setUsername(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -100,6 +102,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setFirstName(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -111,6 +115,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setSurname(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -122,6 +128,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setEmail(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -133,6 +141,8 @@ const Profile = () => {
               disabled={true}
               onChange={(e) => setDateOfBirth(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled="true"
             />
           </div>
           <div className="profile-form-group">
@@ -144,6 +154,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setStreetAddress(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -155,6 +167,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setSuburb(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -166,6 +180,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setCity(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -177,6 +193,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setState(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -188,6 +206,8 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setPostalCode(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-form-group">
@@ -199,10 +219,12 @@ const Profile = () => {
               disabled={canEdit ? false : true}
               onChange={(e) => setCountry(e.target.value)}
               required
+              aria-required="true"
+              aria-disabled={!canEdit}
             />
           </div>
           <div className="profile-buttons">
-            <button type="button" onClick={() => setCanEdit(!canEdit)}>
+            <button type="button" onClick={() => setCanEdit(!canEdit)} aria-pressed={canEdit}>
               {canEdit ? "Cancel" : "Edit"}
             </button>
             {canEdit && <button type="submit" className="save">Save</button>}

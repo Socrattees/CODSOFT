@@ -42,10 +42,19 @@ const Payment = () => {
     }
 
     // Handle payment submission logic here
-    console.log("Payment submitted", { cardNumber, expiryDate, cvv, name });
-    navigate("/checkout/payment-summary", { state: { fromPayment: true, name, cardNumber, cartType, expiryDate, cvv } });
+    navigate("/checkout/payment-summary", {
+      state: {
+        fromPayment: true,
+        name,
+        cardNumber,
+        cartType,
+        expiryDate,
+        cvv
+      }
+    });
   };
 
+  // useEffect to check if the user is coming from the checkout page
   useEffect(() => {
     if (!location.state?.fromCheckout) {
       navigate("/checkout");
@@ -63,7 +72,7 @@ const Payment = () => {
       <Navbar />
       <h1>Payment Page</h1>
       <div className="payment-form-wrapper">
-        <form onSubmit={handleSubmit} className="payment-form">
+        <form onSubmit={handleSubmit} className="payment-form" aria-label="Payment Form">
           <div className="form-group">
             <label htmlFor="name">Name on Card</label>
             <input
@@ -72,6 +81,8 @@ const Payment = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Name on Card"
             />
           </div>
           <div className="form-group">
@@ -82,6 +93,8 @@ const Payment = () => {
               value={cardNumber}
               onChange={(e) => setCardNumber(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Card Number"
             />
           </div>
           <div className="form-group">
@@ -93,6 +106,8 @@ const Payment = () => {
               value={expiryDate}
               onChange={(e) => setExpiryDate(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Expiry Date"
             />
           </div>
           <div className="form-group">
@@ -103,13 +118,20 @@ const Payment = () => {
               value={cvv}
               onChange={(e) => setCvv(e.target.value)}
               required
+              aria-required="true"
+              aria-label="CVV"
             />
           </div>
           <div className="buttons">
-            <button type="button" onClick={() => navigate("/checkout")}>Cancel Payment</button>
-            <button type="submit">Submit Payment</button>
+            <button type="button"
+              onClick={() => navigate("/checkout")}
+              aria-label="Cancel Payment">Cancel Payment</button>
+            <button type="submit" aria-label="Submit Payment">Submit Payment</button>
           </div>
-          {error && <div className="error">{error}</div>}
+          {error &&
+            <div className="error" aria-live="assertive">
+              {error}
+            </div>}
         </form>
       </div>
     </div>

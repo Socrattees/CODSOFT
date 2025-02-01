@@ -13,6 +13,7 @@ const Login = () => {
   const { dispatch } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -38,7 +39,7 @@ const Login = () => {
       <Navbar />
       <h1>Login</h1>
       <div className="login-form-wrapper">
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit} aria-label="Login Form">
           <div className="login-form-group">
             <label htmlFor="username">Username:</label>
             <input
@@ -47,6 +48,8 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Username"
             />
           </div>
           <div className="login-form-group">
@@ -57,11 +60,13 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              aria-required="true"
+              aria-label="Password"
             />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" aria-label="Login Button">Login</button>
           <p className="login-form-register">
-            Don't have an account? <Link to="/register">Register here</Link>
+            Don't have an account? <Link to="/register" aria-label="Register Link">Register here</Link>
           </p>
         </form>
       </div>

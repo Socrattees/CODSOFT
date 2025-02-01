@@ -48,10 +48,11 @@ const PaymentSummary = () => {
     }).format(total);
   };
 
+  // Function to handle payment confirmation
   const handleConfirmPayment = () => {
-    // Handle payment confirmation logic here
     const userConfirmed = window.confirm("Are you sure you want to confirm the payment?");
     if (userConfirmed) {
+      // Update the cart in the database
       const updateCart = async () => {
         try {
           await updateCartByUserIdCall(user._id, cart);
@@ -61,11 +62,13 @@ const PaymentSummary = () => {
         }
       };
       updateCart();
+      // Create object for new transaction
       const newTransaction = {
         username: user.username,
         paymentMethod,
         total: formattedTotal
       };
+      // Create the transaction in the database
       const createTransaction = async () => {
         try {
           await createTransactionCall(newTransaction);
@@ -75,6 +78,7 @@ const PaymentSummary = () => {
         }
       };
       createTransaction();
+      // Clear the carts in the database and the context
       const clearCart = async () => {
         try {
           await clearCartByUserIdCall(user._id);
@@ -89,6 +93,7 @@ const PaymentSummary = () => {
     }
   };
 
+  // Function to handle payment cancellation
   const handleCancelPayment = () => {
     const userConfirmed = window.confirm("Are you sure you want to cancel the payment?");
     if (userConfirmed) {
@@ -96,6 +101,8 @@ const PaymentSummary = () => {
     }
   }
 
+  /* Check if the user has navigated to the payment summary page
+     from the payment page */
   useEffect(() => {
     if (!location.state?.fromPayment) {
       navigate("/");
@@ -108,11 +115,12 @@ const PaymentSummary = () => {
     return <div>Loading...</div>;
   }
   
-
+  // Calculate the total price of the items in the cart
   const calculateTotalPrice = () => {
     return cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  // Format the total price
   const formattedTotal = formattedPrice(calculateTotalPrice());
 
   return (
@@ -140,8 +148,14 @@ const PaymentSummary = () => {
         </div>
         <p><span>Total:</span> {formattedTotal}</p>
         <div className="payment-summary-buttons">
-          <button className="cancel" onClick={handleCancelPayment}>Cancel Payment</button>
-          <button className="confirm" onClick={handleConfirmPayment}>Confirm Payment</button>
+          <button
+            className="cancel"
+            onClick={handleCancelPayment}
+            aria-label="Cancel Payment">Cancel Payment</button>
+          <button
+            className="confirm"
+            onClick={handleConfirmPayment}
+            aria-label="Confirm Payment">Confirm Payment</button>
         </div>
       </div>
     </div>

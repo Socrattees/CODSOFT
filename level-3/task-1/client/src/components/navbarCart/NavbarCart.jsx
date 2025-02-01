@@ -77,7 +77,12 @@ const NavbarCart = ({ user, cart, dispatch, setIsCartVisible }) => {
       <ul className="navbar-cart-items">
         {cart.items.map((item) => (
           <li key={item.productId}>
-            <NavbarCartItem item={item} formattedPrice={formattedPrice} handleRemoveItem={handleRemoveItem} dispatch={dispatch} />
+            <NavbarCartItem
+              item={item}
+              formattedPrice={formattedPrice}
+              handleRemoveItem={handleRemoveItem}
+              dispatch={dispatch}
+            />
           </li>
         ))}
       </ul>
@@ -85,7 +90,8 @@ const NavbarCart = ({ user, cart, dispatch, setIsCartVisible }) => {
         <span>Total:</span>
         <span>{ formattedPrice(total) }</span>
       </div>
-      <button className="navbar-cart-checkout" onClick={handleCheckout}>Checkout</button>
+      <button
+        className="navbar-cart-checkout"onClick={handleCheckout}>Checkout</button>
     </div>
   );
 };

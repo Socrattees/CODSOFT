@@ -9,9 +9,9 @@ const ProductCatalog = ({ products, category }) => {
   }
 
   return (
-    <div className="product-catalog">
+    <div className="product-catalog" aria-label="Product Catalog">
       <h2>{ category }</h2>
-      <div className="products">
+      <div className="products" aria-live="polite">
         { products.map(product => (
           <ProductCatalogCard key={product._id} product={product} />
         )) }
