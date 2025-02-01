@@ -49,3 +49,27 @@
 .contact-form button:hover {
   cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+  .contact-form {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact h1 {
+    margin-top: 5vh;
+  }
+
+  .contact-form {
+    width: 70%;
+  }
+
+  .contact-form-group {
+    flex-direction: column;
+  }
+
+  .contact-form-group textarea {
+    width: 100%; 
+  }
+}

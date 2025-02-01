@@ -57,3 +57,34 @@
 .checkout-item-remove:hover {
   background-color: #ff1a1a;
 }
+
+@media (max-width: 1024px) {
+  .checkout-item {
+    gap: 20px;
+  }
+
+  .checkout-item-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .checkout-item-remove {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-item {
+    gap: 10px;
+  }
+
+  .checkout-item-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .checkout-item-remove {
+    padding: 2px 5px;
+  }
+}

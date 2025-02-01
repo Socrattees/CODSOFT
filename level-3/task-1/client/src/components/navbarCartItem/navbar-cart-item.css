@@ -54,3 +54,27 @@
 .navbar-cart-item-remove:hover {
   background-color: #ff1a1a;
 }
+
+@media (max-width: 768px) {
+  .navbar-cart-item {
+    padding: 10px 0;
+  }
+
+  .navbar-cart-item-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-cart-item-details {
+    flex-grow: 1;
+  }
+
+  .navbar-cart-item-quantity-value {
+    width: 20px;
+  }
+
+  .navbar-cart-item-remove {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+}

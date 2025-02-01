@@ -3,6 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterP
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
 import Home from './pages/home/Home';
+import Profile from './pages/profile/Profile';
 import About from './pages/about/About';
 import Contact from './pages/contact/Contact';
 import Login from './pages/login/Login';
@@ -19,6 +20,7 @@ function App() {
     createRoutesFromElements(
       <>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={user ? <Profile /> : <Navigate to="/" />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />

@@ -50,11 +50,11 @@ const Profile = () => {
 
   // useEffect to add background to body of this page
   useEffect(() => {
-    document.body.classList.add("register-background");
+    document.body.classList.add("profile-background");
 
     // Cleanup function to remove background
     return () => {
-      document.body.classList.remove("register-background");
+      document.body.classList.remove("profile-background");
     }
   }, []);
 
@@ -75,12 +75,12 @@ const Profile = () => {
   }, [canEdit, user]);
 
   return (
-    <div className="register">
+    <div className="profile">
       <Navbar />
       <h1>Profile</h1>
-      <div className="register-form-wrapper">
-        <form className="register-form" onSubmit={handleSubmit}>
-          <div className="register-form-group">
+      <div className="profile-form-wrapper">
+        <form className="profile-form" onSubmit={handleSubmit}>
+          <div className="profile-form-group">
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -91,7 +91,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
@@ -102,7 +102,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="surname">Surname:</label>
             <input
               type="text"
@@ -113,7 +113,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -124,7 +124,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="dateOfBirth">Date of Birth:</label>
             <input
               type="date"
@@ -135,7 +135,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="streetAddress">Street Address:</label>
             <input
               type="text"
@@ -146,7 +146,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="suburb">Suburb:</label>
             <input
               type="text"
@@ -157,7 +157,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="city">City:</label>
             <input
               type="text"
@@ -168,7 +168,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="state">State/Province:</label>
             <input
               type="text"
@@ -179,7 +179,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="postalCode">Postal Code:</label>
             <input
               type="text"
@@ -190,7 +190,7 @@ const Profile = () => {
               required
             />
           </div>
-          <div className="register-form-group">
+          <div className="profile-form-group">
             <label htmlFor="country">Country:</label>
             <input
               type="text"

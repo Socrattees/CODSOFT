@@ -1,6 +1,8 @@
 .about-background {
   background-image: url("../../../../api/public/victory_vault_about_background.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100%;
 }
 
@@ -20,4 +22,20 @@
   margin-bottom: 40px;
   color: #eeeeee;
   font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .about h1 {
+    margin-top: 10vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-background {
+    background-position: center;
+  }
+
+  .about h1 {
+    margin-top: 5vh;
+  }
 }

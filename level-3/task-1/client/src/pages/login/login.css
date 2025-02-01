@@ -1,6 +1,8 @@
 .login-background {
   background-image: url("../../../../api/public/victory_vault_login_background.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100%;
   color: #dddddd;
 }
@@ -69,4 +71,34 @@
 
 .login-form-register {
   text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .login h1 {
+    margin-top: 10vh;
+  }
+
+  .login-form {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-background {
+    background-position: center;
+  }
+
+  .login h1 {
+    margin-top: 5vh;
+  }
+
+  .login-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    width: 70%;
+  }
 }

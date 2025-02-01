@@ -1,28 +1,31 @@
-.register-background {
+.profile-background {
   background-image: url("../../../../api/public/victory_vault_profile_background.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100%;
-  color: #dddddd;
 }
 
-.register h1 {
+.profile h1 {
   font-size: 3rem;
   text-align: center;
   margin-top: 15vh;
+  color: #dddddd;
 }
 
-.register label, p {
+.profile label, p {
   font-weight: 600;
   font-size: 1.1rem;
 }
 
-.register-form-wrapper {
+.profile-form-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #dddddd;
 }
 
-.register-form {
+.profile-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,22 +34,22 @@
   gap: 10px;
 }
 
-.register-form a {
+.profile-form a {
   color: orange;
 }
 
-.register-form a:visited {
+.profile-form a:visited {
   color: orange;
 }
 
-.register-form-group {
+.profile-form-group {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
 
-.register-form-group input,
-.register-form-group textarea {
+.profile-form-group input,
+.profile-form-group textarea {
   padding: 4px;
   width: 50%;
   border-radius: 4px;
@@ -54,15 +57,15 @@
   font-size: 1.1rem;
 }
 
-.register-form-group input:disabled {
+.profile-form-group input:disabled {
   color: white;
 }
 
-.register-form-group textarea {
+.profile-form-group textarea {
   height: 200px;
 }
 
-.register-form .profile-buttons {
+.profile-form .profile-buttons {
   display: flex;
 }
 
@@ -79,4 +82,29 @@
 .profile-buttons .save {
   background-color: green;
   color: white;
+}
+
+@media (max-width: 1024px) {
+  .profile h1 {
+    margin-top: 10vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-background {
+    background-position: center;
+  }
+
+  .profile h1 {
+    margin-top: 5vh;
+  }
+
+  .profile-form {
+    width: 60%;
+  }
+
+  .profile-form-group input,
+  .profile-form-group textarea {
+    width: 60%;
+}
 }

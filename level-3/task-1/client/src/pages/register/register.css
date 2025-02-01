@@ -1,6 +1,8 @@
 .register-background {
   background-image: url("../../../../api/public/victory_vault_login_background.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100%;
   color: #dddddd;
 }
@@ -67,6 +69,35 @@
   border-radius: 4px;
 }
 
-.register-form-register {
-  text-align: center;
+@media (max-width: 1024px) {
+  .register h1 {
+    margin-top: 10vh;
+  }
+
+  .register-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .register h1 {
+    margin-top: 5vh;
+  }
+
+  .register-form {
+    width: 60%;
+  }
+
+  .register-form-group {
+    flex-direction: column;
+  }
+
+  .register-form-group input,
+  .register-form-group textarea {
+    width: 100%;
+  }
+
+  .register-form button {
+    width: 40%;
+  }
 }

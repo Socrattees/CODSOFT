@@ -74,3 +74,55 @@
 .product-catalog-card-button:hover {
   background-color: #0056b3;
 }
+
+@media (max-width: 768px) {
+  .product-catalog-card {
+    padding: 12px;
+  }
+
+  .product-catalog-card-image-wrapper {
+    height: 150px;
+  }
+
+  .product-catalog-card img {
+    max-width: 150px;
+  }
+
+  .product-catalog-card-button {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-catalog-card {
+    padding: 8px;
+  }
+
+  .product-catalog-card-image-wrapper {
+    height: 100px;
+  }
+
+  .product-catalog-card img {
+    max-width: 100px;
+  }
+
+  .product-catalog-card-details {
+    margin-top: 8px;
+  }
+
+  .product-catalog-card-title {
+    font-size: 1rem;
+  }
+
+  .product-catalog-card-description {
+    font-size: 0.9rem;
+  }
+
+  .product-catalog-card-price {
+    font-size: 1rem;
+  }
+
+  .product-catalog-card-button {
+    padding: 6px 12px;
+  }
+}

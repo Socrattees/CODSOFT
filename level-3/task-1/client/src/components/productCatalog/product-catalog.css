@@ -41,3 +41,9 @@
   color: #888;
   font-size: 1em;
 }
+
+@media (max-width: 768px) {
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
