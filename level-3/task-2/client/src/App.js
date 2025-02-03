@@ -1,12 +1,18 @@
-import logo from './logo.svg';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import './App.css';
+import Login from './pages/login/Login';
 
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<Login />} />
+      </>
+  ));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Hello, World!</h1>
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
 }
