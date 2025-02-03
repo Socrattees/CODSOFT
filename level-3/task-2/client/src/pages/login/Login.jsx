@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
+import { loginCall } from "../../apiCalls";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
     console.log("Email:", email);
     console.log("Password:", password);
+    try {
+      const loginCredentials = await loginCall({ email, password });
+      if (loginCredentials) {
+        console.log("Login successful");
+      } else {
+        console.log("Login failed");
+      }
+    } catch (err) {
+      console.error("Error while logging in:", err);
+    }
   };
 
   return (
