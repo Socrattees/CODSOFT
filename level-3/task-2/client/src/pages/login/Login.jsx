@@ -1,20 +1,27 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
-import { loginCall } from "../../apiCalls";
+import { findAdminCall, loginCall } from "../../apiCalls";
+import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
+  const { dispatch } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [adminExists, setAdminExists] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
     try {
-      const loginCredentials = await loginCall({ email, password });
+      const loginCredentials = await loginCall({ email, password }, dispatch);
       if (loginCredentials) {
         console.log("Login successful");
+        navigate("/admin");
       } else {
         console.log("Login failed");
       }
@@ -22,6 +29,18 @@ const Login = () => {
       console.error("Error while logging in:", err);
     }
   };
+
+  useEffect(() => {
+    const findAdmin = async () => {
+      try {
+        const admin = await findAdminCall();
+        setAdminExists(admin);
+      } catch (err) {
+        console.error("Error while finding admin:", err);
+      }
+    };
+    findAdmin();
+  }, []);
 
   return (
     <div className="login">
@@ -56,9 +75,11 @@ const Login = () => {
             </div>
             <button type="submit">Login</button>
           </form>
-          <p>
-            Don't have an account? <Link to="/register">Register here</Link>
-          </p>
+          { !adminExists &&            
+            <p>
+              Don't have an account? <Link to="/register">Register here</Link>
+            </p>
+          }
         </div>
       </div>
     </div>

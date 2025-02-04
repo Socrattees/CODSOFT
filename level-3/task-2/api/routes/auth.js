@@ -10,12 +10,19 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+    let role = "user";
+    const validRoles = ["admin", "manager", "user"];
+    if (req.body.role && validRoles.includes(req.body.role)) {
+      role = req.body.role;
+    }
+
     const newUser = new User({
       username: req.body.username,
       firstName: req.body.firstName,
       surname: req.body.surname,
       email: req.body.email,
       password: hashedPassword,
+      role
     });
 
     const user = await newUser.save();
@@ -40,6 +47,20 @@ router.post("/login", async (req, res) => {
 
     const { password, ...others } = user._doc;
     res.status(200).json(others);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Find admin
+router.get("/findAdmin", async (req, res) => {
+  try {
+    const admin = await User.findOne({ role: "admin" });
+    if (admin) {
+      res.status(200).json(true);
+    } else {
+      res.status(200).json(false);
+    }
   } catch (err) {
     res.status(500).json(err);
   }
