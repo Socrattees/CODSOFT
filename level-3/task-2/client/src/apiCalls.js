@@ -34,3 +34,15 @@ export const findAdminCall = async () => {
     return err;
   }
 };
+
+//USERS
+
+// Get all users
+export const getUsersCall = async () => {
+  try {
+    const res = await axios.get("/api/users");
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}

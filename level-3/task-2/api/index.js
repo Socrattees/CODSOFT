@@ -5,6 +5,7 @@ import "dotenv/config";
 import helmet from "helmet";
 import path from "path";
 import authRoute from "./routes/auth.js";
+import userRoute from "./routes/users.js";
 import { fileURLToPath } from "url";
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(morgan("common"));
 
 // Routes
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 // Server
 app.listen(8800, () => {
