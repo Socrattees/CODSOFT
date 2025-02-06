@@ -1,0 +1,168 @@
+.admin-update-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.admin-update-user h1 {
+  font-size: 3rem;
+  white-space: nowrap;
+}
+
+.admin-update-user h2 {
+  font-size: 2rem;
+}
+
+.admin-update-user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 60%;
+  background-color: #8a2be2;
+  color: white;
+}
+
+.admin-update-user-form-wrapper {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.admin-update-user-form-wrapper a {
+  color: blue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.admin-update-user-form-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.admin-update-user-form-wrapper a:visited {
+  color: #48d1cc;
+}
+
+.admin-update-user-form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-update-user-form .form-group input,
+.admin-update-user-form #role {
+  width: 100%;
+  padding: 7px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.admin-update-user-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-update-user-form button:hover {
+  background-color: #45a049;
+}
+
+.admin-update-user-form-wrapper .error-message {
+  color: #ff4500;
+}
+
+.admin-update-user .user-projects {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.admin-update-user .user-projects h3,
+.admin-update-user .user-projects h4 {
+  margin-bottom: 10px;
+}
+
+.admin-update-user .user-projects ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.admin-update-user .user-projects li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  color: black;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.admin-update-user .user-projects li button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff4d4d;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-update-user .user-projects li button:hover {
+  background-color: #ff1a1a;
+}
+
+.admin-update-user .add-project {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.admin-update-user .add-project select {
+  width: 70%;
+  padding: 7px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.admin-update-user .add-project button {
+  padding: 7px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-update-user .add-project button:hover {
+  background-color: #45a049;
+}
+
+.admin-update-user .form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-update-user .form-buttons button {
+  font-size: 1rem;
+}
+
+.admin-update-user .form-buttons .submit-button:hover {
+  background-color: #45a049;
+}
+
+.admin-update-user .form-buttons .cancel-button {
+  background-color: #ff4d4d;
+}
+
+.admin-update-user .form-buttons .cancel-button:hover {
+  background-color: #ff1a1a;
+}

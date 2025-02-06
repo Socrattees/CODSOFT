@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "./admin-user-management.css";
-import { getUsersCall } from "../../apiCalls";
+import { getProjectsCall, getUsersCall } from "../../apiCalls";
+import { useNavigate } from "react-router-dom";
 
 const AdminUserManagement = () => {
   const [users, setUsers] = useState([]);
+  const [projects, setProjects] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleUpdate = (id) => {
+    console.log("Update user with id: ", id);
+    navigate(`/admin/users/${id}`, { state: { id } });
+  };
 
   const handleDelete = async (id) => {
     console.log("Delete user with id: ", id);
+  };
+
+  const findProjectName = (id) => {
+    const project = projects.find((project) => project._id === id);
+    return project ? project.name : "Project not found";
   };
 
   // useEffect to fetch users
@@ -22,6 +36,19 @@ const AdminUserManagement = () => {
     fetchUsers();
   }, []);
 
+  // useEffect to fetch projects
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await getProjectsCall();
+        setProjects(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProjects();
+  }, []);
+
   return (
     <div className="admin-u-m-user">
       <h2>User Management</h2>
@@ -32,6 +59,7 @@ const AdminUserManagement = () => {
             <th>Username</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Projects</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -52,7 +80,19 @@ const AdminUserManagement = () => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                <button onClick={() => handleDelete(user._id)}>Delete</button>
+                {user.projects && user.projects.length > 0 ? (
+                  <ul>
+                    {user.projects.map((projectId) => (
+                      <li key={projectId}>{findProjectName(projectId)}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  "None"
+                )}
+              </td>
+              <td className="td-actions">
+                <button id="admin-update-user" onClick={() => handleUpdate(user._id)}>Update</button>
+                <button id="admin-delete-user" onClick={() => handleDelete(user._id)}>Delete</button>
               </td>
             </tr>
           ))}

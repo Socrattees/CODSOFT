@@ -46,3 +46,95 @@ export const getUsersCall = async () => {
     return err;
   }
 }
+
+// Get user by id
+export const getUserCall = async (id) => {
+  try {
+    const res = await axios.get(`/api/users/${id}`);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Check if username is unique
+export const checkUsernameCall = async (username) => {
+  try {
+    const res = await axios.post("/api/users/check-username", { username });
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Check if email is unique
+export const checkEmailCall = async (email) => {
+  try {
+    const res = await axios.post("/api/users/check-email", { email });
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Update user
+export const updateUserCall = async (id, user) => {
+  try {
+    const res = await axios.put(`/api/users/update/${id}`, user);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+//PROJECTS
+
+// Get all projects
+export const getProjectsCall = async () => {
+  try {
+    const res = await axios.get("/api/projects");
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Get project by id
+export const getProjectCall = async (id) => {
+  try {
+    const res = await axios.get(`/api/projects/${id}`);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Create new project
+export const createProjectCall = async (project) => {
+  try {
+    const res = await axios.post("/api/projects", project);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Update project
+export const updateProjectCall = async (id, project) => {
+  try {
+    const res = await axios.put(`/api/projects/update/${id}`, project);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Update project members
+export const updateProjectMembersCall = async (id, projects) => {
+  try {
+    const res = await axios.put(`/api/projects/update-members/${id}`, projects);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
