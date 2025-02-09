@@ -1,0 +1,67 @@
+.admin-project-view {
+  margin-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-project-view > h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.project-details {
+  width: 70%;
+  background-color: #8A2BE2;
+  color: white;
+  padding: 40px 20px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+
+#project-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.detail-item {
+  margin-bottom: 10px;
+}
+
+.detail-item strong {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+.detail-item .project-deadline-soon {
+  color: #ff0000;
+  font-weight: 500;
+}
+
+.detail-item .apv-priority-low {
+  color: #00ff00;
+  font-weight: 500;
+}
+
+.detail-item .apv-priority-medium {
+  color: #ffcc00;
+  font-weight: 500;
+}
+
+.detail-item .apv-priority-high {
+  color: #ff0000;
+  font-weight: 500;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 4px;
+}
