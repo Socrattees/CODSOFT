@@ -1,0 +1,89 @@
+.admin-update-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.admin-update-task h2 {
+  font-size: 2rem;
+  margin-top: 10vh;
+}
+
+.admin-update-task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 60%;
+  background-color: #8a2be2;
+  color: white;
+}
+
+.admin-update-task-form-wrapper {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.admin-update-task-form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-update-task-form .form-group input,
+.admin-update-task-form .form-group textarea,
+.admin-update-task-form .form-group select {
+  width: 100%;
+  padding: 7px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.admin-update-task-form .form-group textarea {
+  resize: vertical;
+  min-height: 150px !important;
+}
+
+.admin-update-task-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-update-task-form button:hover {
+  background-color: #45a049;
+}
+
+.admin-update-task-form-wrapper .error-message {
+  color: #ff4500;
+}
+
+.admin-update-task .form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-update-task .form-buttons button {
+  font-size: 1rem;
+}
+
+.admin-update-task .form-buttons .submit-button:hover {
+  background-color: #45a049;
+}
+
+.admin-update-task .form-buttons .cancel-button {
+  background-color: #ff4d4d;
+}
+
+.admin-update-task .form-buttons .cancel-button:hover {
+  background-color: #ff1a1a;
+}

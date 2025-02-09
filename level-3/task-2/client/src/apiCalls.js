@@ -138,3 +138,56 @@ export const updateProjectMembersCall = async (id, projects) => {
     return err;
   }
 }
+
+//TASKS
+
+// Create new task
+export const createTaskCall = async (task, senderId) => {
+  try {
+    const res = await axios.post("/api/tasks", { task, senderId });
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Get all tasks
+export const getTasksCall = async () => {
+  try {
+    const res = await axios.get("/api/tasks");
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Get task by id
+export const getTaskCall = async (id) => {
+  try {
+    const res = await axios.get(`/api/tasks/${id}`);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Update task
+export const updateTaskCall = async (id, updatedTask, senderId) => {
+  try {
+    const res = await axios.put(`/api/tasks/update/${id}`, { updatedTask, senderId });
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Delete task
+export const deleteTaskCall = async (id, senderId) => {
+  try {
+    console.log("deleteTaskCall", id, senderId);
+    const res = await axios.delete(`/api/tasks/delete/${id}`, { data: { senderId }} );
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}

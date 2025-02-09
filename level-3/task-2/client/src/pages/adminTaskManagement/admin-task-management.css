@@ -1,0 +1,77 @@
+.admin-t-m-task {
+  margin-top: 15vh;
+}
+
+.admin-t-m-task > h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-t-m-task-table {
+  width: 70%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.admin-t-m-task-table th,
+.admin-t-m-task-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.admin-t-m-task-table th {
+  background-color: #8A2BE2;
+  color: white;
+}
+
+.priority-low {
+  background-color: #00ff00;
+}
+
+.priority-medium {
+  background-color: #ffcc00;
+}
+
+.priority-high {
+  background-color: #ff0000;
+}
+
+.td-actions > button {
+  width: 90%;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#admin-view-details {
+  background-color: #4CAF50;
+}
+
+#admin-view-details:hover {
+  background-color: #45a049;
+}
+
+#admin-update-task {
+  background-color: #4CAF50;
+}
+
+#admin-update-task:hover {
+  background-color: #45a049;
+}
+
+#admin-delete-task {
+  background-color: #ff4d4d;
+}
+
+#admin-delete-task:hover {
+  background-color: #ff1a1a;
+}
+
+.task-deadline-soon {
+  color: #ff4d4d;
+}

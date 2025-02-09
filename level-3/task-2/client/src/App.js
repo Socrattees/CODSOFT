@@ -8,6 +8,8 @@ import AdminUpdateUser from './pages/adminUpdateUser/AdminUpdateUser';
 import AdminProjectManagement from './pages/adminProjectManagement/AdminProjectManagement';
 import AdminProjectView from './pages/adminProjectManagementView/AdminProjectView';
 import AdminUpdateProject from './pages/adminUpdateProject/AdminUpdateProject';
+import AdminTaskManagement from './pages/adminTaskManagement/AdminTaskManagement';
+import AdminUpdateTask from './pages/adminUpdateTask/AdminUpdateTask';
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
 
@@ -25,6 +27,8 @@ function App() {
         <Route path="/admin/projects" element={user?.role === 'admin' ? <AdminProjectManagement /> : <Navigate to={"/"} />} />
         <Route path="/admin/projects/details/:id" element={user?.role === 'admin' ? <AdminProjectView /> : <Navigate to={"/"} />} />
         <Route path="/admin/projects/:id" element={user?.role === 'admin' ? <AdminUpdateProject /> : <Navigate to={"/"} />} />
+        <Route path="/admin/tasks" element={user?.role === 'admin' ? <AdminTaskManagement /> : <Navigate to={"/"} />} />
+        <Route path="/admin/tasks/:id" element={user?.role === 'admin' ? <AdminUpdateTask /> : <Navigate to={"/"} />} />
       </>
   ));
 

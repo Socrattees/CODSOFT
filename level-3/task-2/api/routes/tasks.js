@@ -31,6 +31,31 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Get all tasks
+router.get('/', async (req, res) => {
+  try {
+    const tasks = await Task.find().sort({ project: 1, createdAt: 1 });
+    res.status(200).json(tasks);
+  } catch (error) {
+    console.error('Error getting tasks:', error);
+    res.status(400).json({ message: 'An error occurred while getting tasks.', error: error.message });
+  }
+});
+
+// Get task by id
+router.get('/:id', async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+    res.status(200).json(task);
+  } catch (error) {
+    console.error('Error getting task:', error);
+    res.status(400).json({ message: 'An error occurred while getting the task.', error: error.message });
+  }
+});
+
 // Update task
 router.put('/update/:id', async (req, res) => {
   try {
@@ -84,12 +109,10 @@ router.delete('/delete/:id', async (req, res) => {
   try {
     const { senderId } = req.body;
 
-    const task = await Task.findById(req.params.id);
+    const task = await Task.findByIdAndDelete(req.params.id);
     if (!task) {
       return res.status(404).json({ message: 'Task not found' });
     }
-
-    await task.remove();
 
     const logEntry = {
       entityId: task._id,
@@ -104,7 +127,7 @@ router.delete('/delete/:id', async (req, res) => {
     res.status(200).json({ message: 'Task deleted successfully' });
   } catch (error) {
     console.error('Error deleting task:', error);
-    res.status(400).json({ message: 'An error occurred while deleting the task.', error: error.message });
+    res.status(500).json({ message: 'An error occurred while deleting the task.', error: error.message });
   }
 });
 
