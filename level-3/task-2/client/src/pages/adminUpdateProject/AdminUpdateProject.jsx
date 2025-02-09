@@ -52,6 +52,11 @@ const AdminUpdateProject = () => {
     if (!confirmUpdate) {
       return;
     }
+    // Check if member is also the manager and remove from members list if true
+    let updatedMembers = members; // Copy members array to avoid state issues
+    if (manager && members.includes(manager)) {
+      updatedMembers = members.filter((member) => member !== manager);
+    }
     try {
       const updatedProject = {
         name,
@@ -59,7 +64,7 @@ const AdminUpdateProject = () => {
         startDate: new Date(startDate),
         endDate: new Date(endDate),
         manager,
-        members,
+        members: updatedMembers,
         tasks,
         status,
         priority,

@@ -7,12 +7,28 @@ const router = express.Router();
 
 // Create new project
 router.post("/", async (req, res) => {
-  const newProject = new Project(req.body);
   try {
+    const admin = await User.findOne({ role: "admin" });
+    const newProject = new Project(req.body);
     const project = await newProject.save();
+
     const manager = await User.findById(project.manager);
-    manager.projects.push(project._id);
-    await manager.save();
+    if (manager) {
+      manager.projects.push(project._id);
+      await manager.save();
+    }
+
+    // Create a log entry
+    const logEntry = {
+      entityId: project._id,
+      entityType: 'Project',
+      action: 'create',
+      changes: null,
+      user: admin._id,
+      timestamp: new Date()
+    };
+    await Log.create(logEntry);
+
     res.status(200).json(project);
   } catch (err) {
     res.status(500).json(err);
