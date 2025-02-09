@@ -7,6 +7,7 @@ import path from "path";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js";
 import projectRoute from "./routes/projects.js";
+import taskRoute from "./routes/tasks.js";
 import { fileURLToPath } from "url";
 
 const app = express();
@@ -30,6 +31,7 @@ app.use(morgan("common"));
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/projects", projectRoute);
+app.use("/api/tasks", taskRoute);
 
 // Server
 app.listen(8800, () => {
