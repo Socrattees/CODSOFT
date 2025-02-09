@@ -1,6 +1,7 @@
 import express from "express";
 import Project from "../models/Project.js";
 import User from "../models/User.js";
+import Log from "../models/Log.js";
 
 const router = express.Router();
 
@@ -39,14 +40,51 @@ router.get("/:id", async (req, res) => {
 });
 
 // Update project
-router.put("/update/:id", async (req, res) => {
+router.put('/update/:id', async (req, res) => {
   try {
-    const project = await Project.findByIdAndUpdate(req.params.id, {
-      $set: req.body,
-    }, { new: true });
+    const { project: updatedProjectData, senderId } = req.body;
+
+    // Find the project to be updated
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    // Save the original project data
+    const originalProject = project.toObject();
+
+    // Update the project with new data
+    Object.assign(project, updatedProjectData);
+    await project.save();
+
+    // Prepare changes for logging
+    const changes = {};
+    for (const key in updatedProjectData) {
+      const originalValue = originalProject[key];
+      const newValue = updatedProjectData[key];
+
+      if (JSON.stringify(originalValue) !== JSON.stringify(newValue)) {
+        changes[key] = {
+          oldValue: JSON.stringify(originalValue),
+          newValue: JSON.stringify(newValue)
+        };
+      }
+    }
+
+    // Create a log entry
+    const logEntry = {
+      entityId: project._id,
+      entityType: 'Project',
+      action: 'update',
+      changes: changes,
+      user: senderId,
+      timestamp: new Date()
+    };
+    await Log.create(logEntry);
+
     res.status(200).json(project);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: 'An error occurred', error: err.message });
   }
 });
 

@@ -120,9 +120,9 @@ export const createProjectCall = async (project) => {
 }
 
 // Update project
-export const updateProjectCall = async (id, project) => {
+export const updateProjectCall = async (id, project, senderId) => {
   try {
-    const res = await axios.put(`/api/projects/update/${id}`, project);
+    const res = await axios.put(`/api/projects/update/${id}`, { project, senderId });
     return res.data;
   } catch (err) {
     return err;
