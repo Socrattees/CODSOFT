@@ -156,4 +156,33 @@ router.put("/update-members/:id", async (req, res) => {
   }
 });
 
+// Delete project
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const { senderId } = req.body;
+
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    await project.remove();
+
+    // Create a log entry
+    const logEntry = {
+      entityId: project._id,
+      entityType: 'Project',
+      action: 'delete',
+      changes: null,
+      user: senderId,
+      timestamp: new Date()
+    };
+    await Log.create(logEntry);
+
+    res.status(200).json({ message: 'Project deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'An error occurred', error: err.message });
+  }
+});
+
 export default router;

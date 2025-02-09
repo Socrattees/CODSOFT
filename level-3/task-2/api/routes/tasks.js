@@ -79,4 +79,33 @@ router.put('/update/:id', async (req, res) => {
   }
 });
 
+// Delete task
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const { senderId } = req.body;
+
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    await task.remove();
+
+    const logEntry = {
+      entityId: task._id,
+      entityType: 'Task',
+      action: 'delete',
+      changes: null, // No changes to log for a deleted task
+      user: senderId,
+      timestamp: new Date()
+    };
+    await Log.create(logEntry);
+
+    res.status(200).json({ message: 'Task deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting task:', error);
+    res.status(400).json({ message: 'An error occurred while deleting the task.', error: error.message });
+  }
+});
+
 export default router;
