@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import "./admin-create-task.css";
 import { useNavigate } from 'react-router-dom';
-import { createTaskCall, getUsersCall, getProjectsCall, getProjectCall } from '../../apiCalls';
-import { UserContext } from '../../context/UserContext';
+import { createTaskCall, getUsersCall, getProjectsCall, getProjectCall } from '../../../apiCalls';
+import { UserContext } from '../../../context/UserContext';
 
 const AdminCreateTask = () => {
   const { user: currentUser } = useContext(UserContext);

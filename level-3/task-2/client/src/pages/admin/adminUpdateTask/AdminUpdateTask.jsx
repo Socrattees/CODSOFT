@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import "./admin-update-task.css";
-import { UserContext } from '../../context/UserContext';
+import { UserContext } from '../../../context/UserContext';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getTaskCall, updateTaskCall, getUsersCall, getProjectCall } from '../../apiCalls';
+import { getTaskCall, updateTaskCall, getUsersCall, getProjectCall } from '../../../apiCalls';
 
 const AdminUpdateTask = () => {
   const { user: currentUser } = useContext(UserContext);

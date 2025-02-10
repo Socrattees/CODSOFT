@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./admin-user-management.css";
-import { getProjectsCall, getUsersCall, deleteUserCall } from "../../apiCalls";
+import { getProjectsCall, getUsersCall, deleteUserCall } from "../../../apiCalls";
 import { useNavigate } from "react-router-dom";
 
 const AdminUserManagement = () => {

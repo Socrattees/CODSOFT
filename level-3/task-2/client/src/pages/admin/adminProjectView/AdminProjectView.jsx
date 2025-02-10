@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProjectCall, getUsersCall } from '../../apiCalls';
+import { getProjectCall, getUsersCall } from '../../../apiCalls';
 import "./admin-project-view.css";
 
 const AdminProjectView = () => {

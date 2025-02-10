@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./admin-update-user.css";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { checkEmailCall, checkUsernameCall, getProjectsCall, getUserCall, updateProjectMembersCall, updateUserCall } from '../../apiCalls';
+import { checkEmailCall, checkUsernameCall, getProjectsCall, getUserCall, updateProjectMembersCall, updateUserCall } from '../../../apiCalls';
 
 const AdminUpdateUser = () => {
   const [user, setUser] = useState({});

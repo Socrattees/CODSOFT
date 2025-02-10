@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./admin-project-management.css";
-import { UserContext } from "../../context/UserContext";
-import { getProjectsCall, getUsersCall, deleteProjectCall } from "../../apiCalls";
+import { UserContext } from "../../../context/UserContext";
+import { getProjectsCall, getUsersCall, deleteProjectCall } from "../../../apiCalls";
 import { useNavigate } from "react-router-dom";
 
 const AdminProjectManagement = () => {

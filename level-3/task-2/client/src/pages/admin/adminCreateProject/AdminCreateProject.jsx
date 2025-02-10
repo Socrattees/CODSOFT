@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./admin-create-project.css";
 import { useNavigate } from 'react-router-dom';
-import { createProjectCall, getUsersCall } from '../../apiCalls';
+import { createProjectCall, getUsersCall } from '../../../apiCalls';
 
 const AdminCreateProject = () => {
 
