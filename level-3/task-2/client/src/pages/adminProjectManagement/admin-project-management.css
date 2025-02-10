@@ -8,6 +8,20 @@
   margin-bottom: 30px;
 }
 
+.create-project-button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-project-button:hover {
+  background-color: #45a049;
+}
+
 .admin-p-m-project-table {
   width: 70%;
   border-collapse: collapse;

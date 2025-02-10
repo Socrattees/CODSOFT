@@ -1,0 +1,89 @@
+.admin-create-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.admin-create-task h2 {
+  margin-top: 10vh;
+  font-size: 2rem;
+}
+
+.admin-create-task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 60%;
+  background-color: #8a2be2;
+  color: white;
+}
+
+.admin-create-task-form-wrapper {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.admin-create-task-form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-create-task-form .form-group input,
+.admin-create-task-form .form-group select,
+.admin-create-task-form .form-group textarea {
+  width: 100%;
+  padding: 7px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.admin-create-task-form .form-group textarea {
+  resize: vertical;
+  min-height: 150px !important;
+}
+
+.admin-create-task-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-create-task-form button:hover {
+  background-color: #45a049;
+}
+
+.admin-create-task-form-wrapper .error-message {
+  color: #ff4500;
+}
+
+.admin-create-task .form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-create-task .form-buttons button {
+  font-size: 1rem;
+}
+
+.admin-create-task .form-buttons .submit-button:hover {
+  background-color: #45a049;
+}
+
+.admin-create-task .form-buttons .cancel-button {
+  background-color: #ff4d4d;
+}
+
+.admin-create-task .form-buttons .cancel-button:hover {
+  background-color: #ff1a1a;
+}

@@ -2,6 +2,7 @@ import express from "express";
 import Project from "../models/Project.js";
 import User from "../models/User.js";
 import Log from "../models/Log.js";
+import Task from "../models/Task.js";
 
 const router = express.Router();
 
@@ -168,6 +169,17 @@ router.delete('/delete/:id', async (req, res) => {
       return res.status(404).json({ message: 'Project not found' });
     }
 
+    // Remove project from users' accounts
+    const users = await User.find({ projects: project._id });
+    const updateUserProjects = users.map(async (user) => {
+      user.projects = user.projects.filter((projId) => projId.toString() !== project._id.toString());
+      await user.save();
+    });
+    await Promise.all(updateUserProjects);
+
+    // Delete all tasks linked to the project
+    await Task.deleteMany({ project: project._id });
+
     // Create a log entry
     const logEntry = {
       entityId: project._id,
@@ -180,7 +192,7 @@ router.delete('/delete/:id', async (req, res) => {
     };
     await Log.create(logEntry);
 
-    res.status(200).json({ message: 'Project deleted successfully' });
+    res.status(200).json({ message: 'Project and related tasks deleted successfully' });
   } catch (err) {
     res.status(500).json({ message: 'An error occurred', error: err.message });
   }

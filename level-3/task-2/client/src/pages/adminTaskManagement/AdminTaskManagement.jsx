@@ -103,6 +103,7 @@ const AdminTaskManagement = () => {
   return (
     <div className="admin-t-m-task">
       <h2>Task Management</h2>
+      <button className="create-task-button" onClick={() => navigate('/admin/tasks/create')}>Create Task</button>
       <table className="admin-t-m-task-table">
         <thead>
           <tr>

@@ -60,9 +60,14 @@ const AdminUserManagement = () => {
     fetchProjects();
   }, []);
 
+  const handleCreateUser = () => {
+    navigate("/admin/users/create");
+  };
+
   return (
     <div className="admin-u-m-user">
       <h2>User Management</h2>
+      <button className="create-user-button" onClick={handleCreateUser}>Create User</button>
       <table className="admin-u-m-user-table">
         <thead>
           <tr>

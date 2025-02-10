@@ -37,6 +37,10 @@ const AdminProjectManagement = () => {
     navigate(`/admin/projects/details/${id}`, { state: { id } });
   };
 
+  const handleCreate = () => {
+    navigate(`/admin/projects/create`);
+  };
+
   // Function to format date
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
@@ -87,6 +91,7 @@ const AdminProjectManagement = () => {
   return (
     <div className="admin-p-m-project">
       <h2>Project Management</h2>
+      <button className="create-project-button" onClick={handleCreate}>Create New Project</button>
       <table className="admin-p-m-project-table">
         <thead>
           <tr>

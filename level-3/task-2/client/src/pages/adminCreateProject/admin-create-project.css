@@ -1,0 +1,155 @@
+.admin-create-project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.admin-create-project h2 {
+  margin-top: 10vh;
+  font-size: 2rem;
+}
+
+.admin-create-project-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 60%;
+  background-color: #8a2be2;
+  color: white;
+}
+
+.admin-create-project-form-wrapper {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.admin-create-project-form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-create-project-form .form-group input,
+.admin-create-project-form .form-group select,
+.admin-create-project-form .form-group textarea {
+  width: 100%;
+  padding: 7px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.admin-create-project-form .form-group textarea {
+  resize: vertical;
+  min-height: 150px !important;
+}
+
+.admin-create-project-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-create-project-form button:hover {
+  background-color: #45a049;
+}
+
+.admin-create-project-form-wrapper .error-message {
+  color: #ff4500;
+}
+
+.admin-create-project .project-members {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.admin-create-project .project-members h3,
+.admin-create-project .project-members h4 {
+  margin-bottom: 10px;
+}
+
+.admin-create-project .project-members ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.admin-create-project .project-members li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  color: black;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.admin-create-project .project-members li button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff4d4d;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-create-project .project-members li button:hover {
+  background-color: #ff1a1a;
+}
+
+.admin-create-project .add-member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.admin-create-project .add-member select {
+  width: 70%;
+  padding: 7px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.admin-create-project .add-member button {
+  padding: 7px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-create-project .add-member button:hover {
+  background-color: #45a049;
+}
+
+.admin-create-project .form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-create-project .form-buttons button {
+  font-size: 1rem;
+}
+
+.admin-create-project .form-buttons .submit-button:hover {
+  background-color: #45a049;
+}
+
+.admin-create-project .form-buttons .cancel-button {
+  background-color: #ff4d4d;
+}
+
+.admin-create-project .form-buttons .cancel-button:hover {
+  background-color: #ff1a1a;
+}

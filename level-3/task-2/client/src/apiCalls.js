@@ -120,7 +120,7 @@ export const getProjectCall = async (id) => {
 }
 
 // Create new project
-export const createProjectCall = async (project) => {
+export const createProjectCall = async (project, senderId) => {
   try {
     const res = await axios.post("/api/projects", project);
     return res.data;
@@ -162,9 +162,9 @@ export const deleteProjectCall = async (id, senderId) => {
 //TASKS
 
 // Create new task
-export const createTaskCall = async (task, senderId) => {
+export const createTaskCall = async (newTask, senderId) => {
   try {
-    const res = await axios.post("/api/tasks", { task, senderId });
+    const res = await axios.post("/api/tasks", { newTask, senderId });
     return res.data;
   } catch (err) {
     return err;
