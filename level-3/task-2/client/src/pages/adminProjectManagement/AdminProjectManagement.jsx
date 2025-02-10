@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./admin-project-management.css";
-import { getProjectsCall, getUsersCall } from "../../apiCalls";
+import { UserContext } from "../../context/UserContext";
+import { getProjectsCall, getUsersCall, deleteProjectCall } from "../../apiCalls";
 import { useNavigate } from "react-router-dom";
 
 const AdminProjectManagement = () => {
+  const { user:currentUser } = useContext(UserContext);
+
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -15,7 +18,18 @@ const AdminProjectManagement = () => {
   };
 
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this project?");
+    if (!confirmDelete) {
+      return;
+    }
     console.log("Delete project with id: ", id);
+    try {
+      await deleteProjectCall(id, currentUser._id);
+      const updatedProjects = projects.filter((project) => project._id !== id);
+      setProjects(updatedProjects);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleViewDetails = (id) => {

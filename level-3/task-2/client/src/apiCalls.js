@@ -87,6 +87,16 @@ export const updateUserCall = async (id, user) => {
   }
 }
 
+// Delete user
+export const deleteUserCall = async (id) => {
+  try {
+    const res = await axios.delete(`/api/users/delete/${id}`);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
 //PROJECTS
 
 // Get all projects
@@ -133,6 +143,16 @@ export const updateProjectCall = async (id, project, senderId) => {
 export const updateProjectMembersCall = async (id, projects) => {
   try {
     const res = await axios.put(`/api/projects/update-members/${id}`, projects);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Delete project
+export const deleteProjectCall = async (id, senderId) => {
+  try {
+    const res = await axios.delete(`/api/projects/delete/${id}`, { data: { senderId } });
     return res.data;
   } catch (err) {
     return err;

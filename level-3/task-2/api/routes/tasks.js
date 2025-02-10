@@ -14,9 +14,14 @@ router.post('/', async (req, res) => {
     const task = new Task(newTask);
     await task.save();
 
+    // Update User and Project with the new task
+    await User.findByIdAndUpdate(newTask.user, { $push: { tasks: task._id } });
+    await Project.findByIdAndUpdate(newTask.project, { $push: { tasks: task._id } });
+
     const logEntry = {
       entityId: task._id,
       entityType: 'Task',
+      title: task.title,
       action: 'create',
       changes: null, // No changes to log for a new task
       user: senderId,
@@ -73,6 +78,16 @@ router.put('/update/:id', async (req, res) => {
     Object.assign(task, updatedTask);
     await task.save();
 
+    // Update User and Project if they have changed
+    if (updatedTask.assignee && updatedTask.assignee !== originalTask.assignee) {
+      await User.findByIdAndUpdate(originalTask.assignee, { $pull: { tasks: task._id } });
+      await User.findByIdAndUpdate(updatedTask.assignee, { $push: { tasks: task._id } });
+    }
+    if (updatedTask.project && updatedTask.project !== originalTask.project) {
+      await Project.findByIdAndUpdate(originalTask.project, { $pull: { tasks: task._id } });
+      await Project.findByIdAndUpdate(updatedTask.project, { $push: { tasks: task._id } });
+    }
+
     // Prepare changes for logging
     const changes = {};
     for (const key in updatedTask) {
@@ -90,6 +105,7 @@ router.put('/update/:id', async (req, res) => {
     const logEntry = {
       entityId: task._id,
       entityType: 'Task',
+      title: task.title,
       action: 'update',
       changes: changes,
       user: senderId,
@@ -114,9 +130,14 @@ router.delete('/delete/:id', async (req, res) => {
       return res.status(404).json({ message: 'Task not found' });
     }
 
+    // Update User and Project to remove the deleted task
+    await User.findByIdAndUpdate(task.user, { $pull: { tasks: task._id } });
+    await Project.findByIdAndUpdate(task.project, { $pull: { tasks: task._id } });
+
     const logEntry = {
       entityId: task._id,
       entityType: 'Task',
+      title: task.title,
       action: 'delete',
       changes: null, // No changes to log for a deleted task
       user: senderId,

@@ -22,6 +22,7 @@ router.post("/", async (req, res) => {
     const logEntry = {
       entityId: project._id,
       entityType: 'Project',
+      title: project.name,
       action: 'create',
       changes: null,
       user: admin._id,
@@ -91,6 +92,7 @@ router.put('/update/:id', async (req, res) => {
     const logEntry = {
       entityId: project._id,
       entityType: 'Project',
+      title: project.name,
       action: 'update',
       changes: changes,
       user: senderId,
@@ -161,17 +163,16 @@ router.delete('/delete/:id', async (req, res) => {
   try {
     const { senderId } = req.body;
 
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findByIdAndDelete(req.params.id);
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
-
-    await project.remove();
 
     // Create a log entry
     const logEntry = {
       entityId: project._id,
       entityType: 'Project',
+      title: project.name,
       action: 'delete',
       changes: null,
       user: senderId,

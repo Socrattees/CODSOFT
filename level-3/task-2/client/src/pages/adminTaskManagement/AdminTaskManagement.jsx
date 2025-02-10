@@ -19,6 +19,10 @@ const AdminTaskManagement = () => {
   };
 
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this task?");
+    if (!confirmDelete) {
+      return;
+    }
     console.log("Delete task with id: ", id);
     try {
       const res = await deleteTaskCall(id, currentUser._id);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./admin-user-management.css";
-import { getProjectsCall, getUsersCall } from "../../apiCalls";
+import { getProjectsCall, getUsersCall, deleteUserCall } from "../../apiCalls";
 import { useNavigate } from "react-router-dom";
 
 const AdminUserManagement = () => {
@@ -15,7 +15,18 @@ const AdminUserManagement = () => {
   };
 
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if (!confirmDelete) {
+      return;
+    }
     console.log("Delete user with id: ", id);
+    try {
+      await deleteUserCall(id);
+      const updatedUsers = users.filter((user) => user._id !== id);
+      setUsers(updatedUsers);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const findProjectName = (id) => {

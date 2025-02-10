@@ -12,6 +12,10 @@ const logSchema = new mongoose.Schema({
     required: true,
     enum: ['Project', 'Task']
   },
+  title: {
+    type: String,
+    required: true
+  },
   action: {
     type: String,
     required: true,
