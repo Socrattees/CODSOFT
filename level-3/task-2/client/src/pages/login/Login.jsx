@@ -5,7 +5,7 @@ import { findAdminCall, loginCall } from "../../apiCalls";
 import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
-  const { dispatch } = useContext(UserContext);
+  const { user, dispatch } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,6 @@ const Login = () => {
       const loginCredentials = await loginCall({ email, password }, dispatch);
       if (loginCredentials) {
         console.log("Login successful");
-        navigate("/admin");
       } else {
         console.log("Login failed");
       }
@@ -41,6 +40,13 @@ const Login = () => {
     };
     findAdmin();
   }, []);
+
+  // useEffect to redirect users to home pages based on their role
+  useEffect(() => {
+    if (user && user.role === "admin") {
+      navigate("/admin", { replace: true });
+    }
+  }, [user, navigate]);
 
   return (
     <div className="login">
