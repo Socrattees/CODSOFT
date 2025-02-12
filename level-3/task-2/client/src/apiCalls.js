@@ -222,6 +222,18 @@ export const deleteTaskCall = async (id, senderId) => {
   }
 }
 
+//LOGS
+
+// Get all logs
+export const getLogsCall = async () => {
+  try {
+    const res = await axios.get("/api/logs");
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
 //UPLOADS
 
 // Upload file

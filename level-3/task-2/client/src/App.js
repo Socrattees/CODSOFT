@@ -14,6 +14,7 @@ import AdminUpdateProject from './pages/admin/adminUpdateProject/AdminUpdateProj
 import AdminTaskManagement from './pages/admin/adminTaskManagement/AdminTaskManagement';
 import AdminCreateTask from './pages/admin/adminCreateTask/AdminCreateTask';
 import AdminUpdateTask from './pages/admin/adminUpdateTask/AdminUpdateTask';
+import Home from './pages/home/Home';
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
 
@@ -24,9 +25,10 @@ function App() {
     createRoutesFromElements(
       <>
         <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/edit-profile" element={user? <EditProfile /> : <Navigate to="/" />} />
+        <Route path="/login" element={<Navigate to="/" />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/edit-profile" element={user? <EditProfile /> : <Navigate to="/" />} />
+        <Route path="/home" element={user?.role !== 'admin' ? <Home /> : <Navigate to="/" />} />
         <Route path="/admin" element={user?.role === 'admin' ? <AdminDashboard /> : <Navigate to={"/"} />} />
         <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUserManagement /> : <Navigate to={"/"} />} />
         <Route path="/admin/users/create" element={user?.role === 'admin' ? <AdminCreateUser /> : <Navigate to={"/"} />} />

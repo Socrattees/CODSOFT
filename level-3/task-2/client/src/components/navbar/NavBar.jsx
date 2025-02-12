@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './admin-navbar.css';
+import './navbar.css';
 import { UserContext } from '../../context/UserContext';
 
-const AdminNavbar = () => {
+const Navbar = () => {
   const { user: currentUser, dispatch } = useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -14,10 +14,6 @@ const AdminNavbar = () => {
   };
 
   const handleLogout = async () => {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (!confirmLogout) {
-      return;
-    }
     await dispatch({ type: "LOG_OUT" });
     navigate(0);
   };
@@ -27,12 +23,12 @@ const AdminNavbar = () => {
   }
 
   return (
-    <nav className="admin-navbar">
+    <nav className="navbar">
       <div className="navbar-left">
         <img src={ process.env.REACT_APP_PUBLIC_FOLDER + "manage_mate_logo.png" } alt="Logo" className="navbar-logo" />
         <ul className="navbar-list left">
           <li className="navbar-item">
-            <Link to="/admin">Dashboard</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li className="navbar-item">
             <span>{currentUser.username}</span>
@@ -50,7 +46,7 @@ const AdminNavbar = () => {
           <Link to="/admin/tasks">Task Management</Link>
         </li>
         <li className="navbar-item user-profile" onClick={toggleDropdown}>
-          <img src={process.env.REACT_APP_PROFILE_FOLDER + (currentUser.profilePicture || "blankProfilePicture.png")} alt="Profile" className="profile-picture" />
+          <img src={process.env.REACT_APP_PROFILE_FOLDER + (currentUser.profilePicture || "blankProfileP</li>icture.png")} alt="Profile" className="profile-picture" />
           {showDropdown && (
             <div className="dropdown-menu">
               <Link to="/edit-profile">Edit Profile</Link>
@@ -63,4 +59,4 @@ const AdminNavbar = () => {
   );
 };
 
-export default AdminNavbar;
+export default Navbar;

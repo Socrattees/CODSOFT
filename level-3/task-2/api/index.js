@@ -8,6 +8,7 @@ import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js";
 import projectRoute from "./routes/projects.js";
 import taskRoute from "./routes/tasks.js";
+import logRoute from "./routes/logs.js";
 import { fileURLToPath } from "url";
 import multer from "multer";
 
@@ -53,6 +54,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/projects", projectRoute);
 app.use("/api/tasks", taskRoute);
+app.use("/api/logs", logRoute);
 
 // Server
 app.listen(8800, () => {
