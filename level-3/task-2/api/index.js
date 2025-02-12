@@ -9,6 +9,7 @@ import userRoute from "./routes/users.js";
 import projectRoute from "./routes/projects.js";
 import taskRoute from "./routes/tasks.js";
 import { fileURLToPath } from "url";
+import multer from "multer";
 
 const app = express();
 
@@ -26,6 +27,26 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+
+// Store profile pictures in the public folder
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/profilePictures");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+const upload = multer({ storage });
+
+// Upload profile picture
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  try {
+    return res.status(200).json("File uploaded successfully");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 // Routes
 app.use("/api/auth", authRoute);

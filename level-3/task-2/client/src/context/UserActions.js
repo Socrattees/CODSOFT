@@ -17,3 +17,18 @@ export const LoginFail = (error) => ({
 export const LogOut = () => ({
   type: "LOG_OUT"
 });
+
+//USER ACTIONS
+export const UpdateStart = () => ({
+  type: "UPDATE_START"
+});
+
+export const UpdateSuccess = (user) => ({
+  type: "UPDATE_SUCCESS",
+  payload: user
+});
+
+export const UpdateFail = (error) => ({
+  type: "UPDATE_FAIL",
+  payload: error
+});

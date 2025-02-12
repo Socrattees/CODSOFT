@@ -2,6 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterP
 import './App.css';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import EditProfile from './pages/editProfile/EditProfile';
 import AdminDashboard from './pages/admin/adminDashboard/AdminDashboard';
 import AdminUserManagement from './pages/admin/adminUserManagement/AdminUserManagement';
 import AdminCreateUser from './pages/admin/adminCreateUser/AdminCreateUser';
@@ -24,6 +25,7 @@ function App() {
       <>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/edit-profile" element={user? <EditProfile /> : <Navigate to="/" />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin" element={user?.role === 'admin' ? <AdminDashboard /> : <Navigate to={"/"} />} />
         <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUserManagement /> : <Navigate to={"/"} />} />

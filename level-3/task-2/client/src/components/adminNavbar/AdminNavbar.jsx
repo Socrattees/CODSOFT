@@ -46,7 +46,7 @@ const AdminNavbar = () => {
           <img src={process.env.REACT_APP_PROFILE_FOLDER + (currentUser.profilePicture || "blankProfilePicture.png")} alt="Profile" className="profile-picture" />
           {showDropdown && (
             <div className="dropdown-menu">
-              <Link to="/admin/edit-profile">Edit Profile</Link>
+              <Link to="/edit-profile">Edit Profile</Link>
               <span onClick={handleLogout}>Log Out</span>
             </div>
           )}

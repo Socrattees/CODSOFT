@@ -87,6 +87,16 @@ export const updateUserCall = async (id, user) => {
   }
 }
 
+// Update user profile details
+export const updateProfileCall = async (id, user) => {
+  try {
+    const res = await axios.put(`/api/users/update-profile/${id}`, user);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
 // Delete user
 export const deleteUserCall = async (id) => {
   try {
@@ -207,6 +217,17 @@ export const deleteTaskCall = async (id, senderId) => {
     console.log("deleteTaskCall", id, senderId);
     const res = await axios.delete(`/api/tasks/delete/${id}`, { data: { senderId }} );
     return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+//UPLOADS
+
+// Upload file
+export const uploadFileCall = async (file) => {
+  try {
+    await axios.post("/api/upload", file);
   } catch (err) {
     return err;
   }
