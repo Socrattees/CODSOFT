@@ -19,7 +19,9 @@ import Tasks from './pages/tasks/Tasks';
 import UpdateTask from './pages/updateTask/UpdateTask';
 import Projects from './pages/projects/Projects';
 import ViewProject from './pages/viewProject/ViewProject';
+import UpdateProject from './pages/updateProject/UpdateProject';
 import Members from './pages/members/Members';
+import UpdateMember from './pages/updateMember/UpdateMember';
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
 
@@ -36,9 +38,11 @@ function App() {
         <Route path="/home" element={(user && user?.role !== 'admin') ? <Home /> : <Navigate to="/" />} />
         <Route path="/home/projects" element={(user && user?.role !== 'admin') ? <Projects /> : <Navigate to="/" />} />
         <Route path="/home/projects/details/:id" element={(user && user?.role !== 'admin') ? <ViewProject /> : <Navigate to="/" />} />
+        <Route path="/home/projects/:id" element={(user && user?.role !== 'admin') ? <UpdateProject /> : <Navigate to="/" />} />
         <Route path="/home/tasks" element={(user && user?.role !== 'admin') ? <Tasks /> : <Navigate to="/" />} />
         <Route path="/home/tasks/:id" element={(user && user?.role !== 'admin') ? <UpdateTask /> : <Navigate to="/" />} />
         <Route path="/home/members" element={(user && user?.role !== 'admin') ? <Members /> : <Navigate to="/" />} />
+        <Route path="/home/users/:id" element={(user && user?.role !== 'admin') ? <UpdateMember /> : <Navigate to="/" />} />
         <Route path="/admin" element={user?.role === 'admin' ? <AdminDashboard /> : <Navigate to={"/"} />} />
         <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUserManagement /> : <Navigate to={"/"} />} />
         <Route path="/admin/users/create" element={user?.role === 'admin' ? <AdminCreateUser /> : <Navigate to={"/"} />} />

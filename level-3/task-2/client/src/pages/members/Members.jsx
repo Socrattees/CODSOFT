@@ -15,7 +15,7 @@ const Members = () => {
 
   const handleUpdate = (id) => {
     console.log("Update user with id: ", id);
-    navigate(`/admin/users/${id}`, { state: { id } });
+    navigate(`/home/users/${id}`, { state: { id } });
   };
 
   const findProjectName = (id) => {
@@ -30,19 +30,6 @@ const Members = () => {
     });
   };
 
-  // useEffect to fetch users
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await getUsersCall();
-        setUsers(res);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchUsers();
-  }, []);
-
   // useEffect to fetch projects
   useEffect(() => {
     const fetchProjects = async () => {
@@ -55,6 +42,25 @@ const Members = () => {
     };
     fetchProjects();
   }, []);
+
+  // useEffect to fetch users
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await getUsersCall();
+        const filteredUsers = res.filter(user => 
+          user._id !== currentUser._id && 
+          user.projects.some(projectId => 
+            currentUser.projects.includes(projectId)
+          )
+        );
+        setUsers(filteredUsers);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUsers();
+  }, [currentUser]);
 
   return (
     <>
@@ -101,7 +107,7 @@ const Members = () => {
                 </td>
                 <td className="td-actions">
                   {isUserInManagedProject(user.projects) && (
-                    <button id="admin-update-user" onClick={() => handleUpdate(user._id)}>Update</button>
+                    <button id="update-user" onClick={() => handleUpdate(user._id)}>Update</button>
                   )}
                 </td>
               </tr>

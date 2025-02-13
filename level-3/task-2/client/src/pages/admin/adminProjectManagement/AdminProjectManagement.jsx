@@ -3,6 +3,7 @@ import "./admin-project-management.css";
 import { UserContext } from "../../../context/UserContext";
 import { getProjectsCall, getUsersCall, deleteProjectCall } from "../../../apiCalls";
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
 
 const AdminProjectManagement = () => {
   const { user:currentUser } = useContext(UserContext);
@@ -89,44 +90,47 @@ const AdminProjectManagement = () => {
   }, []);
 
   return (
-    <div className="admin-p-m-project">
-      <h2>Project Management</h2>
-      <button className="create-project-button" onClick={handleCreate}>Create New Project</button>
-      <table className="admin-p-m-project-table">
-        <thead>
-          <tr>
-            <th>Project Name</th>
-            <th>Description</th>
-            <th>Manager</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {projects.map((project) => (
-            <tr key={project._id}>
-              <td>{project.name}</td>
-              <td>{project.description}</td>
-              <td>{findManager(project.manager)}</td>
-              <td>{formatDate(project.startDate)}</td>
-              <td className={isLessThanAWeekLeft(project.endDate) ? "project-deadline-soon" : ""}>
-                {formatDate(project.endDate)}
-              </td>
-              <td>{project.status}</td>
-              <td className={`priority-${project.priority}`}>{project.priority}</td>
-              <td className="td-actions">
-                <button id="admin-view-details" onClick={() => handleViewDetails(project._id)}>View Details</button>
-                <button id="admin-update-project" onClick={() => handleUpdate(project._id)}>Update</button>
-                <button id="admin-delete-project" onClick={() => handleDelete(project._id)}>Delete</button>
-              </td>
+    <>
+      <AdminNavbar />
+      <div className="admin-p-m-project">
+        <h2>Project Management</h2>
+        <button className="create-project-button" onClick={handleCreate}>Create New Project</button>
+        <table className="admin-p-m-project-table">
+          <thead>
+            <tr>
+              <th>Project Name</th>
+              <th>Description</th>
+              <th>Manager</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {projects.map((project) => (
+              <tr key={project._id}>
+                <td>{project.name}</td>
+                <td>{project.description}</td>
+                <td>{findManager(project.manager)}</td>
+                <td>{formatDate(project.startDate)}</td>
+                <td className={isLessThanAWeekLeft(project.endDate) ? "project-deadline-soon" : ""}>
+                  {formatDate(project.endDate)}
+                </td>
+                <td>{project.status}</td>
+                <td className={`priority-${project.priority}`}>{project.priority}</td>
+                <td className="td-actions">
+                  <button id="admin-view-details" onClick={() => handleViewDetails(project._id)}>View Details</button>
+                  <button id="admin-update-project" onClick={() => handleUpdate(project._id)}>Update</button>
+                  <button id="admin-delete-project" onClick={() => handleDelete(project._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

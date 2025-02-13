@@ -1,11 +1,11 @@
-.admin-project-view {
-  margin-top: 15vh;
+.view-project {
+  margin-top: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.admin-project-view > h2 {
+.view-project > h2 {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 30px;

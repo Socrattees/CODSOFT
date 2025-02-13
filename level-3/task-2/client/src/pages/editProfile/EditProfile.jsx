@@ -3,6 +3,8 @@ import "./edit-profile.css";
 import { useNavigate } from "react-router-dom";
 import { checkEmailCall, checkUsernameCall, getUserCall, updateProfileCall, updateUserCall, uploadFileCall } from "../../apiCalls";
 import { UserContext } from "../../context/UserContext";
+import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
+import Navbar from "../../components/navbar/NavBar";
 
 const EditProfile = () => {
   const { user: currentUser, dispatch } = useContext(UserContext);
@@ -140,88 +142,92 @@ const EditProfile = () => {
   }, [currentUser]);
 
   return (
-    <div className="edit-profile">
-      <div className="edit-profile-container">
-        <div className="edit-profile-form-wrapper">
-          <h2>Edit Profile</h2>
-          <form onSubmit={handleSubmit} className="edit-profile-form">
-            <div className="form-group">
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="firstName">First Name:</label>
-              <input
-                type="text"
-                id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="surname">Surname:</label>
-              <input
-                type="text"
-                id="surname"
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                placeholder="Enter new password if you want to change"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="retypePassword">Retype Password:</label>
-              <input
-                type="password"
-                id="retypePassword"
-                value={retypePassword}
-                onChange={(e) => setRetypePassword(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="profilePicture">Profile Picture: <span>{user? user.profilePicture : ""}</span></label>
-              <input
-                type="file"
-                id="profilePicture"
-                accept=".png, .jpeg, .jpg"
-                onChange={handleProfilePictureChange}
-              />
-            </div>
-            <div className="form-buttons">
-              <button className="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
-              <button className="submit-button" type="submit">Update</button>
-            </div>
-          </form>
-          {error && <p className="error-message">{error}</p>}
+    <>
+      { currentUser.role === "admin" && <AdminNavbar /> }
+      { currentUser.role !== "admin" && <Navbar /> }
+      <div className="edit-profile">
+        <div className="edit-profile-container">
+          <div className="edit-profile-form-wrapper">
+            <h2>Edit Profile</h2>
+            <form onSubmit={handleSubmit} className="edit-profile-form">
+              <div className="form-group">
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="firstName">First Name:</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="surname">Surname:</label>
+                <input
+                  type="text"
+                  id="surname"
+                  value={surname}
+                  onChange={(e) => setSurname(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  placeholder="Enter new password if you want to change"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="retypePassword">Retype Password:</label>
+                <input
+                  type="password"
+                  id="retypePassword"
+                  value={retypePassword}
+                  onChange={(e) => setRetypePassword(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="profilePicture">Profile Picture: <span>{user? user.profilePicture : ""}</span></label>
+                <input
+                  type="file"
+                  id="profilePicture"
+                  accept=".png, .jpeg, .jpg"
+                  onChange={handleProfilePictureChange}
+                />
+              </div>
+              <div className="form-buttons">
+                <button className="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+                <button className="submit-button" type="submit">Update</button>
+              </div>
+            </form>
+            {error && <p className="error-message">{error}</p>}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

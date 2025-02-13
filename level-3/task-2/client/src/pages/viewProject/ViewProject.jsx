@@ -73,7 +73,7 @@ const ViewProject = () => {
   return (
     <>
       <Navbar />
-      <div className="admin-project-view">
+      <div className="view-project">
         <h2>Project Details</h2>
         <div className="project-details">
           <div id="project-name" className="detail-item">

@@ -3,6 +3,7 @@ import "./admin-task-management.css";
 import { UserContext } from "../../../context/UserContext";
 import { getProjectsCall, getUsersCall, getTasksCall, deleteTaskCall } from "../../../apiCalls";
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
 
 const AdminTaskManagement = () => {
   const { user: currentUser } = useContext(UserContext);
@@ -101,45 +102,48 @@ const AdminTaskManagement = () => {
   }, []);
 
   return (
-    <div className="admin-t-m-task">
-      <h2>Task Management</h2>
-      <button className="create-task-button" onClick={() => navigate('/admin/tasks/create')}>Create Task</button>
-      <table className="admin-t-m-task-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Assignee</th>
-            <th>Project</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => (
-            <tr key={task._id}>
-              <td>{task.title}</td>
-              <td>{task.description}</td>
-              <td>{findAssignee(task.assignee)}</td>
-              <td>{findProject(task.project)}</td>
-              <td>{formatDate(task.startDate)}</td>
-              <td className={isLessThanAWeekLeft(task.endDate) ? "task-deadline-soon" : ""}>
-                {formatDate(task.endDate)}
-              </td>
-              <td>{task.status}</td>
-              <td className={`priority-${task.priority}`}>{task.priority}</td>
-              <td className="td-actions">
-                <button id="admin-update-task" onClick={() => handleUpdate(task._id)}>Update</button>
-                <button id="admin-delete-task" onClick={() => handleDelete(task._id)}>Delete</button>
-              </td>
+    <>
+      <AdminNavbar />
+      <div className="admin-t-m-task">
+        <h2>Task Management</h2>
+        <button className="create-task-button" onClick={() => navigate('/admin/tasks/create')}>Create Task</button>
+        <table className="admin-t-m-task-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Assignee</th>
+              <th>Project</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {tasks.map((task) => (
+              <tr key={task._id}>
+                <td>{task.title}</td>
+                <td>{task.description}</td>
+                <td>{findAssignee(task.assignee)}</td>
+                <td>{findProject(task.project)}</td>
+                <td>{formatDate(task.startDate)}</td>
+                <td className={isLessThanAWeekLeft(task.endDate) ? "task-deadline-soon" : ""}>
+                  {formatDate(task.endDate)}
+                </td>
+                <td>{task.status}</td>
+                <td className={`priority-${task.priority}`}>{task.priority}</td>
+                <td className="td-actions">
+                  <button id="admin-update-task" onClick={() => handleUpdate(task._id)}>Update</button>
+                  <button id="admin-delete-task" onClick={() => handleDelete(task._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

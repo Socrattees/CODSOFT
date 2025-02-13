@@ -1,15 +1,15 @@
-.admin-update-project {
+.update-member {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10vh;
+  margin-top: 15vh;
 }
 
-.admin-update-project h2 {
+.update-member h2 { 
   font-size: 2rem;
 }
 
-.admin-update-project-container {
+.update-member-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,12 +20,26 @@
   color: white;
 }
 
-.admin-update-project-form-wrapper {
+.update-member-form-wrapper {
   padding: 20px;
   box-sizing: border-box;
 }
 
-.admin-update-project-form .form-group {
+.update-member-form-wrapper a {
+  color: blue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.update-member-form-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.update-member-form-wrapper a:visited {
+  color: #48d1cc;
+}
+
+.update-member-form .form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -33,21 +47,15 @@
   margin-bottom: 20px;
 }
 
-.admin-update-project-form .form-group input,
-.admin-update-project-form .form-group textarea,
-.admin-update-project-form .form-group select {
+.update-member-form .form-group input,
+.update-member-form #role {
   width: 100%;
   padding: 7px;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.admin-update-project-form .form-group textarea {
-  resize: vertical;
-  min-height: 150px !important;
-}
-
-.admin-update-project-form button {
+.update-member-form button {
   padding: 10px;
   border: none;
   border-radius: 4px;
@@ -56,35 +64,31 @@
   cursor: pointer;
 }
 
-.admin-update-project-form button:hover {
+.update-member-form button:hover {
   background-color: #45a049;
 }
 
-.admin-update-project-form-wrapper .error-message {
+.update-member-form-wrapper .error-message {
   color: #ff4500;
 }
 
-.admin-update-project .project-members {
+.update-member .user-projects {
   margin-top: 20px;
   width: 100%;
 }
 
-.admin-update-project .project-members h3,
-.admin-update-project .project-members h4 {
+.update-member .user-projects h3,
+.update-member .user-projects h4 {
   margin-bottom: 10px;
 }
 
-.admin-update-project .project-members h4 {
-  margin-top: 10px;
-}
-
-.admin-update-project .project-members ul {
+.update-member .user-projects ul {
   list-style-type: none;
   padding: 0;
   margin: 0 0 20px 0;
 }
 
-.admin-update-project .project-members li {
+.update-member .user-projects li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -95,7 +99,7 @@
   margin-bottom: 10px;
 }
 
-.admin-update-project .project-members li button {
+.update-member .user-projects li button {
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
@@ -104,25 +108,25 @@
   cursor: pointer;
 }
 
-.admin-update-project .project-members li button:hover {
+.update-member .user-projects li button:hover {
   background-color: #ff1a1a;
 }
 
-.admin-update-project .add-member {
+.update-member .add-project {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-.admin-update-project .add-member select {
+.update-member .add-project select {
   width: 70%;
   padding: 7px;
   border-radius: 4px;
   margin-right: 10px;
 }
 
-.admin-update-project .add-member button {
+.update-member .add-project button {
   padding: 7px 15px;
   border: none;
   border-radius: 4px;
@@ -131,28 +135,28 @@
   cursor: pointer;
 }
 
-.admin-update-project .add-member button:hover {
+.update-member .add-project button:hover {
   background-color: #45a049;
 }
 
-.admin-update-project .form-buttons {
+.update-member .form-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.admin-update-project .form-buttons button {
+.update-member .form-buttons button {
   font-size: 1rem;
 }
 
-.admin-update-project .form-buttons .submit-button:hover {
+.update-member .form-buttons .submit-button:hover {
   background-color: #45a049;
 }
 
-.admin-update-project .form-buttons .cancel-button {
+.update-member .form-buttons .cancel-button {
   background-color: #ff4d4d;
 }
 
-.admin-update-project .form-buttons .cancel-button:hover {
+.update-member .form-buttons .cancel-button:hover {
   background-color: #ff1a1a;
 }

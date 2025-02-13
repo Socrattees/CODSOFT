@@ -3,6 +3,7 @@ import "./admin-update-task.css";
 import { UserContext } from '../../../context/UserContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getTaskCall, updateTaskCall, getUsersCall, getProjectCall } from '../../../apiCalls';
+import AdminNavbar from '../../../components/adminNavbar/AdminNavbar';
 
 const AdminUpdateTask = () => {
   const { user: currentUser } = useContext(UserContext);
@@ -117,112 +118,115 @@ const AdminUpdateTask = () => {
   }, [project]);
 
   return (
-    <div className="admin-update-task">
-      <div className="admin-update-task-container">
-        <div className="admin-update-task-form-wrapper">
-          <h2>Update Task</h2>
-          <form onSubmit={handleSubmit} className="admin-update-task-form">
-            <div className="form-group">
-              <label htmlFor="title">Title:</label>
-              <input
-                type="text"
-                id="title"
-                value={title}
-                placeholder={task.title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">Description:</label>
-              <textarea
-                id="description"
-                value={description}
-                placeholder={task.description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="project">Project:</label>
-              <input
-                type="text"
-                id="project"
-                value={project.name}
-                readOnly
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="assignee">Assignee:</label>
-              <select
-                id="assignee"
-                value={assignee}
-                onChange={(e) => setAssignee(e.target.value)}
-                required
-              >
-                <option value="">Select an assignee</option>
-                {allUsers.map((user) => (
-                  <option key={user._id} value={user._id}>
-                    {user.username}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="startDate">Start Date:</label>
-              <input
-                type="date"
-                id="startDate"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="endDate">End Date:</label>
-              <input
-                type="date"
-                id="endDate"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="status">Status:</label>
-              <select
-                id="status"
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-                required
-              >
-                <option value="not started">Not Started</option>
-                <option value="in progress">In Progress</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="priority">Priority:</label>
-              <select
-                id="priority"
-                value={priority}
-                onChange={(e) => setPriority(e.target.value)}
-                required
-              >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
-            </div>
-            <div className="form-buttons">
-              <button className="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
-              <button className="submit-button" type="submit">Update</button>
-            </div>
-          </form>
-          {error && <p className="error-message">{error}</p>}
+    <>
+      <AdminNavbar />
+      <div className="admin-update-task">
+        <div className="admin-update-task-container">
+          <div className="admin-update-task-form-wrapper">
+            <h2>Update Task</h2>
+            <form onSubmit={handleSubmit} className="admin-update-task-form">
+              <div className="form-group">
+                <label htmlFor="title">Title:</label>
+                <input
+                  type="text"
+                  id="title"
+                  value={title}
+                  placeholder={task.title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">Description:</label>
+                <textarea
+                  id="description"
+                  value={description}
+                  placeholder={task.description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="project">Project:</label>
+                <input
+                  type="text"
+                  id="project"
+                  value={project.name}
+                  readOnly
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="assignee">Assignee:</label>
+                <select
+                  id="assignee"
+                  value={assignee}
+                  onChange={(e) => setAssignee(e.target.value)}
+                  required
+                >
+                  <option value="">Select an assignee</option>
+                  {allUsers.map((user) => (
+                    <option key={user._id} value={user._id}>
+                      {user.username}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="startDate">Start Date:</label>
+                <input
+                  type="date"
+                  id="startDate"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="endDate">End Date:</label>
+                <input
+                  type="date"
+                  id="endDate"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="status">Status:</label>
+                <select
+                  id="status"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  required
+                >
+                  <option value="not started">Not Started</option>
+                  <option value="in progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="priority">Priority:</label>
+                <select
+                  id="priority"
+                  value={priority}
+                  onChange={(e) => setPriority(e.target.value)}
+                  required
+                >
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <div className="form-buttons">
+                <button className="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
+                <button className="submit-button" type="submit">Update</button>
+              </div>
+            </form>
+            {error && <p className="error-message">{error}</p>}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

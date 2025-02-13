@@ -1,53 +1,81 @@
-import React, { useState, useEffect } from 'react';
-import "./admin-create-project.css";
-import { useNavigate } from 'react-router-dom';
-import { createProjectCall, getUsersCall } from '../../../apiCalls';
-import AdminNavbar from '../../../components/adminNavbar/AdminNavbar';
+import React, { useContext, useEffect, useState } from 'react';
+import "./update-project.css";
+import { UserContext } from '../../context/UserContext';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getProjectCall, updateProjectCall, getUsersCall } from '../../apiCalls';
+import Navbar from '../../components/navbar/NavBar';
 
-const AdminCreateProject = () => {
+const UpdateProject = () => {
+  const { user: currentUser } = useContext(UserContext);
 
+  const [project, setProject] = useState({});
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [manager, setManager] = useState("");
   const [members, setMembers] = useState([]);
-
+  const [tasks, setTasks] = useState([]);
   const [status, setStatus] = useState("");
-  const [priority, setPriority] = useState("low");
+  const [priority, setPriority] = useState("");
   const [allUsers, setAllUsers] = useState([]);
   const [error, setError] = useState("");
 
+  const location = useLocation();
   const navigate = useNavigate();
+
+  // Function to format date to "yyyy-mm-dd"
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0];
+  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
+    // Check if the project details have changed
+    if (
+      name === project.name &&
+      description === project.description &&
+      startDate === project.startDate &&
+      endDate === project.endDate &&
+      manager === project.manager &&
+      JSON.stringify(members) === JSON.stringify(project.members) &&
+      JSON.stringify(tasks) === JSON.stringify(project.tasks) &&
+      status === project.status &&
+      priority === project.priority
+    ) {
+      return;
+    }
+    // Confirm the update
+    const confirmUpdate = window.confirm("Are you sure you want to update this project?");
+    if (!confirmUpdate) {
+      return;
+    }
     // Check if member is also the manager and remove from members list if true
     let updatedMembers = members; // Copy members array to avoid state issues
     if (manager && members.includes(manager)) {
       updatedMembers = members.filter((member) => member !== manager);
     }
-
     try {
-      const newProject = {
+      const updatedProject = {
         name,
         description,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
         manager,
         members: updatedMembers,
+        tasks,
         status,
         priority,
       };
-      console.log(newProject);
-      await createProjectCall(newProject);
+      await updateProjectCall(project._id, updatedProject, currentUser._id);
       setError("");
-      navigate("/admin/projects");
-      console.log("Project created successfully");
+      navigate("/home/projects");
+      console.log("Project updated successfully");
     } catch (err) {
-      setError("An error occurred during creation");
+      setError("An error occurred during update");
     }
   };
 
@@ -56,7 +84,7 @@ const AdminCreateProject = () => {
     if (!confirmCancel) {
       return;
     }
-    navigate("/admin/projects");
+    navigate("/home/projects");
   };
 
   const handleAddMember = (userId) => {
@@ -73,6 +101,28 @@ const AdminCreateProject = () => {
     setMembers((prevMembers) => prevMembers.filter((member) => member !== userId));
   };
 
+  // useEffect to fetch project details
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const project = await getProjectCall(location.state.id);
+        setProject(project);
+        setName(project.name);
+        setDescription(project.description);
+        setStartDate(formatDate(project.startDate));
+        setEndDate(formatDate(project.endDate));
+        setManager(project.manager);
+        setMembers(project.members);
+        setTasks(project.tasks);
+        setStatus(project.status);
+        setPriority(project.priority);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProject();
+  }, [location.state.id]);
+
   // useEffect to fetch all users
   useEffect(() => {
     const fetchAllUsers = async () => {
@@ -88,18 +138,19 @@ const AdminCreateProject = () => {
 
   return (
     <>
-      <AdminNavbar />
-      <div className="admin-create-project">
-        <div className="admin-create-project-container">
-          <div className="admin-create-project-form-wrapper">
-            <h2>Create Project</h2>
-            <form onSubmit={handleSubmit} className="admin-create-project-form">
+      <Navbar />
+      <div className="update-project">
+        <div className="update-project-container">
+          <div className="update-project-form-wrapper">
+            <h2>Update Project</h2>
+            <form onSubmit={handleSubmit} className="update-project-form">
               <div className="form-group">
                 <label htmlFor="name">Name:</label>
                 <input
                   type="text"
                   id="name"
                   value={name}
+                  placeholder={project.name}
                   onChange={(e) => setName(e.target.value)}
                   required
                 />
@@ -109,6 +160,7 @@ const AdminCreateProject = () => {
                 <textarea
                   id="description"
                   value={description}
+                  placeholder={project.description}
                   onChange={(e) => setDescription(e.target.value)}
                   required
                 />
@@ -120,6 +172,7 @@ const AdminCreateProject = () => {
                   id="startDate"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
+                  readOnly
                   required
                 />
               </div>
@@ -208,7 +261,7 @@ const AdminCreateProject = () => {
               </div>
               <div className="form-buttons">
                 <button className="cancel-button" type="button" onClick={handleCancel}>Cancel</button>
-                <button className="submit-button" type="submit">Create</button>
+                <button className="submit-button" type="submit">Update</button>
               </div>
             </form>
             {error && <p className="error-message">{error}</p>}
@@ -219,4 +272,4 @@ const AdminCreateProject = () => {
   );
 };
 
-export default AdminCreateProject;
+export default UpdateProject;

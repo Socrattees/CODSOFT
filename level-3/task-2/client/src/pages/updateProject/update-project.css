@@ -1,15 +1,15 @@
-.admin-update-project {
+.update-project {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10vh;
 }
 
-.admin-update-project h2 {
+.update-project h2 {
   font-size: 2rem;
 }
 
-.admin-update-project-container {
+.update-project-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,12 +20,12 @@
   color: white;
 }
 
-.admin-update-project-form-wrapper {
+.update-project-form-wrapper {
   padding: 20px;
   box-sizing: border-box;
 }
 
-.admin-update-project-form .form-group {
+.update-project-form .form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -33,21 +33,21 @@
   margin-bottom: 20px;
 }
 
-.admin-update-project-form .form-group input,
-.admin-update-project-form .form-group textarea,
-.admin-update-project-form .form-group select {
+.update-project-form .form-group input,
+.update-project-form .form-group textarea,
+.update-project-form .form-group select {
   width: 100%;
   padding: 7px;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.admin-update-project-form .form-group textarea {
+.update-project-form .form-group textarea {
   resize: vertical;
   min-height: 150px !important;
 }
 
-.admin-update-project-form button {
+.update-project-form button {
   padding: 10px;
   border: none;
   border-radius: 4px;
@@ -56,35 +56,35 @@
   cursor: pointer;
 }
 
-.admin-update-project-form button:hover {
+.update-project-form button:hover {
   background-color: #45a049;
 }
 
-.admin-update-project-form-wrapper .error-message {
+.update-project-form-wrapper .error-message {
   color: #ff4500;
 }
 
-.admin-update-project .project-members {
+.update-project .project-members {
   margin-top: 20px;
   width: 100%;
 }
 
-.admin-update-project .project-members h3,
-.admin-update-project .project-members h4 {
+.update-project .project-members h3,
+.update-project .project-members h4 {
   margin-bottom: 10px;
 }
 
-.admin-update-project .project-members h4 {
+.update-project .project-members h4 {
   margin-top: 10px;
 }
 
-.admin-update-project .project-members ul {
+.update-project .project-members ul {
   list-style-type: none;
   padding: 0;
   margin: 0 0 20px 0;
 }
 
-.admin-update-project .project-members li {
+.update-project .project-members li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -95,7 +95,7 @@
   margin-bottom: 10px;
 }
 
-.admin-update-project .project-members li button {
+.update-project .project-members li button {
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
@@ -104,25 +104,25 @@
   cursor: pointer;
 }
 
-.admin-update-project .project-members li button:hover {
+.update-project .project-members li button:hover {
   background-color: #ff1a1a;
 }
 
-.admin-update-project .add-member {
+.update-project .add-member {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-.admin-update-project .add-member select {
+.update-project .add-member select {
   width: 70%;
   padding: 7px;
   border-radius: 4px;
   margin-right: 10px;
 }
 
-.admin-update-project .add-member button {
+.update-project .add-member button {
   padding: 7px 15px;
   border: none;
   border-radius: 4px;
@@ -131,28 +131,28 @@
   cursor: pointer;
 }
 
-.admin-update-project .add-member button:hover {
+.update-project .add-member button:hover {
   background-color: #45a049;
 }
 
-.admin-update-project .form-buttons {
+.update-project .form-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.admin-update-project .form-buttons button {
+.update-project .form-buttons button {
   font-size: 1rem;
 }
 
-.admin-update-project .form-buttons .submit-button:hover {
+.update-project .form-buttons .submit-button:hover {
   background-color: #45a049;
 }
 
-.admin-update-project .form-buttons .cancel-button {
+.update-project .form-buttons .cancel-button {
   background-color: #ff4d4d;
 }
 
-.admin-update-project .form-buttons .cancel-button:hover {
+.update-project .form-buttons .cancel-button:hover {
   background-color: #ff1a1a;
 }

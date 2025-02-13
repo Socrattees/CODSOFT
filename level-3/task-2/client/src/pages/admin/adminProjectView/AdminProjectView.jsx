@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProjectCall, getUsersCall } from '../../../apiCalls';
 import "./admin-project-view.css";
+import AdminNavbar from '../../../components/adminNavbar/AdminNavbar';
 
 const AdminProjectView = () => {
   const { id } = useParams();
@@ -70,49 +71,52 @@ const AdminProjectView = () => {
   }
 
   return (
-    <div className="admin-project-view">
-      <h2>Project Details</h2>
-      <div className="project-details">
-        <div id="project-name" className="detail-item">
-          <strong>Project Name:</strong> {project.name}
-        </div>
-        <div className="detail-item">
-          <strong>Description:</strong>
-          <p>{project.description}</p>
-        </div>
-        <div className="detail-item">
-          <strong>Start Date:</strong> {formatDate(project.startDate)}
-        </div>
-        <div className="detail-item">
-          <strong>End Date:</strong>
-          <span className={isLessThanAWeekLeft(project.endDate) ? "project-deadline-soon" : ""}>{formatDate(project.endDate)}</span>
-        </div>
-        <div className="detail-item">
-          <strong>Manager:</strong>
-          {project.manager ?
-            getUserNameById(project.manager)
-            : <span style={{ color: 'red' }}>No manager assigned</span>}
-        </div>
-        <div className="detail-item">
-          <strong>Members:</strong>
-          {project.members && project.members.length > 0 ? (
-            <ul>
-              {project.members.map((memberId) => (
-                <li key={memberId}>{getUserNameById(memberId)}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No members assigned</p>
-          )}
-        </div>
-        <div className="detail-item">
-          <strong>Status:</strong> {project.status}
-        </div>
-        <div className={"detail-item"}>
-          <strong>Priority:</strong> <span className={getPriorityClass(project.priority)}>{project.priority}</span>
+    <>
+      <AdminNavbar />
+      <div className="admin-project-view">
+        <h2>Project Details</h2>
+        <div className="project-details">
+          <div id="project-name" className="detail-item">
+            <strong>Project Name:</strong> {project.name}
+          </div>
+          <div className="detail-item">
+            <strong>Description:</strong>
+            <p>{project.description}</p>
+          </div>
+          <div className="detail-item">
+            <strong>Start Date:</strong> {formatDate(project.startDate)}
+          </div>
+          <div className="detail-item">
+            <strong>End Date:</strong>
+            <span className={isLessThanAWeekLeft(project.endDate) ? "project-deadline-soon" : ""}>{formatDate(project.endDate)}</span>
+          </div>
+          <div className="detail-item">
+            <strong>Manager:</strong>
+            {project.manager ?
+              getUserNameById(project.manager)
+              : <span style={{ color: 'red' }}>No manager assigned</span>}
+          </div>
+          <div className="detail-item">
+            <strong>Members:</strong>
+            {project.members && project.members.length > 0 ? (
+              <ul>
+                {project.members.map((memberId) => (
+                  <li key={memberId}>{getUserNameById(memberId)}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No members assigned</p>
+            )}
+          </div>
+          <div className="detail-item">
+            <strong>Status:</strong> {project.status}
+          </div>
+          <div className={"detail-item"}>
+            <strong>Priority:</strong> <span className={getPriorityClass(project.priority)}>{project.priority}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
