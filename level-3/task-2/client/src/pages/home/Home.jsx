@@ -4,7 +4,6 @@ import Navbar from '../../components/navbar/NavBar';
 import { UserContext } from '../../context/UserContext';
 import { getProjectsCall, getTasksCall, getLogsCall } from '../../apiCalls';
 import Category from '../../components/category/Category';
-import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const { user: currentUser } = useContext(UserContext);
@@ -14,8 +13,6 @@ const Home = () => {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const navigate = useNavigate();
 
   // useEffect to fetch projects, tasks, and logs
   useEffect(() => {
@@ -55,10 +52,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const handleViewTasks = () => {
-    navigate('/tasks'); // Navigate to the tasks page
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -84,9 +77,6 @@ const Home = () => {
             <section className="home-section">
               <h3>Welcome, Developer</h3>
               <p>View and manage your assigned tasks.</p>
-              <button className="home-button" onClick={handleViewTasks}>
-                View Tasks
-              </button>
             </section>
           )}
         </main>

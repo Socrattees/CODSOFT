@@ -1,13 +1,13 @@
-.members {
+.admin-u-m-user {
   margin-top: 15vh;
 }
 
-.members ul {
+.admin-u-m-user ul {
   list-style: none;
   padding: 0;
 }
 
-.members > h2 {
+.admin-u-m-user > h2 {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 30px;
@@ -27,29 +27,29 @@
   background-color: #45a049;
 }
 
-.members-table {
+.admin-u-m-user-table {
   width: 70%;
   border-collapse: collapse;
   margin: 0 auto;
 }
 
-.members-table th,
-.members-table td {
+.admin-u-m-user-table th,
+.admin-u-m-user-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
 }
 
-.members-table th {
+.admin-u-m-user-table th {
   background-color: #8A2BE2;
   color: white;
 }
 
-.members-table li {
+.admin-u-m-user-table li {
   margin-bottom: 7px;
 }
 
-.members-table .th-profile {
+.admin-u-m-user-table .th-profile {
   width: 60px;
 }
 

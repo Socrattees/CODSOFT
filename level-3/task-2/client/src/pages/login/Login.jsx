@@ -45,7 +45,7 @@ const Login = () => {
   useEffect(() => {
     if (user && user.role === "admin") {
       navigate("/admin", { replace: true });
-    } else {
+    } else if (user && user.role !== "admin") {
       navigate("/home", { replace: true });
     }
   }, [user, navigate]);

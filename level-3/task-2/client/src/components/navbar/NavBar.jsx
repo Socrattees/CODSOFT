@@ -14,6 +14,10 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (!confirmLogout) {
+      return;
+    }
     await dispatch({ type: "LOG_OUT" });
     navigate(0);
   };
@@ -37,16 +41,16 @@ const Navbar = () => {
       </div>
       <ul className="navbar-list right">
         <li className="navbar-item">
-          <Link to="/admin/users">User Management</Link>
+          <Link to="/home/members">Members</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/admin/projects">Project Management</Link>
+          <Link to="/home/projects">Projects</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/admin/tasks">Task Management</Link>
+          <Link to="/home/tasks">Tasks</Link>
         </li>
         <li className="navbar-item user-profile" onClick={toggleDropdown}>
-          <img src={process.env.REACT_APP_PROFILE_FOLDER + (currentUser.profilePicture || "blankProfileP</li>icture.png")} alt="Profile" className="profile-picture" />
+          <img src={process.env.REACT_APP_PROFILE_FOLDER + (currentUser.profilePicture || "blankProfilePicture.png")} alt="Profile" className="profile-picture" />
           {showDropdown && (
             <div className="dropdown-menu">
               <Link to="/edit-profile">Edit Profile</Link>

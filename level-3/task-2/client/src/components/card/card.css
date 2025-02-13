@@ -13,6 +13,10 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.card.completed {
+  background-color: #e5fbe5;
+}
+
 .card h3 {
   margin: 0 0 10px 0;
   color: #333;
@@ -21,4 +25,16 @@
 .card p {
   margin: 5px 0;
   color: #666;
+}
+
+.card .less-than-a-week{
+  color: #ff0000;
+}
+
+.card .card-priority-medium {
+  color: #ffcc00;
+}
+
+.card .card-priority-high {
+  color: #ff0000;
 }

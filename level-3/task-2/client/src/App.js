@@ -15,6 +15,11 @@ import AdminTaskManagement from './pages/admin/adminTaskManagement/AdminTaskMana
 import AdminCreateTask from './pages/admin/adminCreateTask/AdminCreateTask';
 import AdminUpdateTask from './pages/admin/adminUpdateTask/AdminUpdateTask';
 import Home from './pages/home/Home';
+import Tasks from './pages/tasks/Tasks';
+import UpdateTask from './pages/updateTask/UpdateTask';
+import Projects from './pages/projects/Projects';
+import ViewProject from './pages/viewProject/ViewProject';
+import Members from './pages/members/Members';
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
 
@@ -28,7 +33,12 @@ function App() {
         <Route path="/login" element={<Navigate to="/" />} />
         <Route path="/register" element={<Register />} />
         <Route path="/edit-profile" element={user? <EditProfile /> : <Navigate to="/" />} />
-        <Route path="/home" element={user?.role !== 'admin' ? <Home /> : <Navigate to="/" />} />
+        <Route path="/home" element={(user && user?.role !== 'admin') ? <Home /> : <Navigate to="/" />} />
+        <Route path="/home/projects" element={(user && user?.role !== 'admin') ? <Projects /> : <Navigate to="/" />} />
+        <Route path="/home/projects/details/:id" element={(user && user?.role !== 'admin') ? <ViewProject /> : <Navigate to="/" />} />
+        <Route path="/home/tasks" element={(user && user?.role !== 'admin') ? <Tasks /> : <Navigate to="/" />} />
+        <Route path="/home/tasks/:id" element={(user && user?.role !== 'admin') ? <UpdateTask /> : <Navigate to="/" />} />
+        <Route path="/home/members" element={(user && user?.role !== 'admin') ? <Members /> : <Navigate to="/" />} />
         <Route path="/admin" element={user?.role === 'admin' ? <AdminDashboard /> : <Navigate to={"/"} />} />
         <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUserManagement /> : <Navigate to={"/"} />} />
         <Route path="/admin/users/create" element={user?.role === 'admin' ? <AdminCreateUser /> : <Navigate to={"/"} />} />

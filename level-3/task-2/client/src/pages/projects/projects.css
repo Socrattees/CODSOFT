@@ -1,19 +1,14 @@
-.members {
+.projects {
   margin-top: 15vh;
 }
 
-.members ul {
-  list-style: none;
-  padding: 0;
-}
-
-.members > h2 {
+.projects > h2 {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 30px;
 }
 
-.create-user-button {
+.create-project-button {
   margin-bottom: 20px;
   padding: 10px 20px;
   background-color: #4caf50;
@@ -23,40 +18,38 @@
   cursor: pointer;
 }
 
-.create-user-button:hover {
+.create-project-button:hover {
   background-color: #45a049;
 }
 
-.members-table {
+.projects-table {
   width: 70%;
   border-collapse: collapse;
   margin: 0 auto;
 }
 
-.members-table th,
-.members-table td {
+.projects-table th,
+.projects-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
 }
 
-.members-table th {
+.projects-table th {
   background-color: #8A2BE2;
   color: white;
 }
 
-.members-table li {
-  margin-bottom: 7px;
+.priority-low {
+  background-color: #00ff00;
 }
 
-.members-table .th-profile {
-  width: 60px;
+.priority-medium {
+  background-color: #ffcc00;
 }
 
-.profile-picture {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.priority-high {
+  background-color: #ff0000;
 }
 
 .td-actions > button {
@@ -69,18 +62,30 @@
   cursor: pointer;
 }
 
-#admin-update-user {
+#view-details {
   background-color: #4CAF50;
 }
 
-#admin-update-user:hover {
+#view-details:hover {
   background-color: #45a049;
 }
 
-#admin-delete-user {
+#update-project {
+  background-color: #4CAF50;
+}
+
+#update-project:hover {
+  background-color: #45a049;
+}
+
+#delete-project {
   background-color: #ff4d4d;
 }
 
-#admin-delete-user:hover {
+#delete-project:hover {
   background-color: #ff1a1a;
+}
+
+.project-deadline-soon {
+  color: #ff4d4d;
 }
