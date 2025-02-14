@@ -5,7 +5,6 @@ import { createProjectCall, getUsersCall } from '../../../apiCalls';
 import AdminNavbar from '../../../components/adminNavbar/AdminNavbar';
 
 const AdminCreateProject = () => {
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");

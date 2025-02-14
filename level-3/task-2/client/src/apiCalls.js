@@ -140,7 +140,7 @@ export const getProjectCall = async (id) => {
 }
 
 // Create new project
-export const createProjectCall = async (project, senderId) => {
+export const createProjectCall = async (project) => {
   try {
     const res = await axios.post("/api/projects", project);
     return res.data;

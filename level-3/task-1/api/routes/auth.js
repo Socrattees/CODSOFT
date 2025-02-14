@@ -2,7 +2,7 @@ import express from 'express';
 import User from '../models/User.js';
 import Address from '../models/Address.js';
 import Cart from '../models/Cart.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
