@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./edit-profile.css";
 import { useNavigate } from "react-router-dom";
-import { checkEmailCall, checkUsernameCall, getUserCall, updateProfileCall, updateUserCall, uploadFileCall } from "../../apiCalls";
+import { checkEmailCall, checkUsernameCall, getUserCall, updateProfileCall, uploadFileCall } from "../../apiCalls";
 import { UserContext } from "../../context/UserContext";
 import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import Navbar from "../../components/navbar/NavBar";
@@ -21,6 +21,7 @@ const EditProfile = () => {
 
   const navigate = useNavigate();
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -92,11 +93,8 @@ const EditProfile = () => {
         formData.append("name", fileName);
         formData.append("file", profilePicture);
         updatedUser.profilePicture = fileName;
-        console.log(updatedUser);
-        console.log(profilePicture.name);
         await uploadFileCall(formData);
       }
-      console.log("Updated user: ", updatedUser);
       await updateProfileCall(user._id, updatedUser);
       const res = await getUserCall(currentUser._id);
       try {
@@ -106,13 +104,12 @@ const EditProfile = () => {
         dispatch({ type: "UPDATE_FAIL", payload: error });
       }
       setError("");
-      console.log("User updated successfully");
-      //window.location.reload();
     } catch (err) {
       setError("An error occurred during update");
     }
   };
 
+  // Function to handle cancel button
   const handleCancel = () => {
     const confirmCancel = window.confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
     if (!confirmCancel) {
@@ -121,10 +118,12 @@ const EditProfile = () => {
     navigate("/");
   };
 
+  // Function to handle profile picture change
   const handleProfilePictureChange = (e) => {
     setProfilePicture(e.target.files[0]);
   };
 
+  // useEffect to fetch user details
   useEffect(() => {
     const fetchUser = async () => {
       try {

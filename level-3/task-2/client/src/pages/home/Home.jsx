@@ -17,13 +17,13 @@ const Home = () => {
 
   // useEffect to fetch projects, tasks, users, and logs
   useEffect(() => {
-    if (!currentUser) return;
-
+    if (!currentUser) {
+      return;
+    }
     const fetchProjects = async () => {
       const res = await getProjectsCall();
       setProjects(res);
     };
-
     const fetchUsers = async () => {
       const res = await getUsersCall();
       setUsers(res);

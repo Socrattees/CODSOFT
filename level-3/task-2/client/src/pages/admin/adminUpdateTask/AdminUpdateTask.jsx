@@ -29,6 +29,7 @@ const AdminUpdateTask = () => {
     return date.toISOString().split('T')[0];
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -68,6 +69,7 @@ const AdminUpdateTask = () => {
     }
   };
 
+  // Function to handle cancel button
   const handleCancel = () => {
     const confirmCancel = window.confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
     if (!confirmCancel) {

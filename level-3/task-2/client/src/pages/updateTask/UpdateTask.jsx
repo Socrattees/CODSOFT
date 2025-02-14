@@ -29,6 +29,7 @@ const UpdateTask = () => {
     return date.toISOString().split('T')[0];
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -62,12 +63,12 @@ const UpdateTask = () => {
       await updateTaskCall(task._id, updatedTask, currentUser._id);
       setError("");
       navigate("/home/tasks");
-      console.log("Task updated successfully");
     } catch (err) {
       setError("An error occurred during update");
     }
   };
 
+  // Function to handle cancel button
   const handleCancel = () => {
     const confirmCancel = window.confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
     if (!confirmCancel) {
@@ -117,6 +118,7 @@ const UpdateTask = () => {
     }
   }, [project]);
 
+  // Check if the user is not authorized to update the task
   const isReadOnly = currentUser.role === "user";
 
   return (

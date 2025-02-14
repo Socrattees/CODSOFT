@@ -13,17 +13,17 @@ const AdminProjectManagement = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle update
   const handleUpdate = (id) => {
-    console.log("Update project with id: ", id);
     navigate(`/admin/projects/${id}`, { state: { id } });
   };
 
+  // Function to handle delete
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this project?");
     if (!confirmDelete) {
       return;
     }
-    console.log("Delete project with id: ", id);
     try {
       await deleteProjectCall(id, currentUser._id);
       const updatedProjects = projects.filter((project) => project._id !== id);
@@ -33,11 +33,12 @@ const AdminProjectManagement = () => {
     }
   };
 
+  // Function to handle view details
   const handleViewDetails = (id) => {
-    console.log("View details of project with id: ", id);
     navigate(`/admin/projects/details/${id}`, { state: { id } });
   };
 
+  // Function to handle create
   const handleCreate = () => {
     navigate(`/admin/projects/create`);
   };

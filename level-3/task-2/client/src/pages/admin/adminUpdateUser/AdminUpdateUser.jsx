@@ -19,6 +19,7 @@ const AdminUpdateUser = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -64,17 +65,16 @@ const AdminUpdateUser = () => {
         role,
         projects: userProjects,
       };
-      console.log(userProjects);
       await updateProjectMembersCall(user._id, { projects: userProjects });
       await updateUserCall(user._id, updatedUser);
       setError("");
       navigate("/admin/users");
-      console.log("User updated successfully");
     } catch (err) {
       setError("An error occurred during update");
     }
   };
 
+  // Function to handle cancel button
   const handleCancel = () => {
     const confirmCancel = window.confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
     if (!confirmCancel) {
@@ -83,13 +83,14 @@ const AdminUpdateUser = () => {
     navigate("/admin/users");
   };
 
-
+  // Function to add a project to the user
   const handleAddProject = () => {
     if (selectedProject && !userProjects.includes(selectedProject)) {
       setUserProjects((prevProjects) => [...prevProjects, selectedProject]);
     }
   };
 
+  // Function to remove a project from the user
   const handleRemoveProject = (projectId) => {
     const confirmRemove = window.confirm("Are you sure you want to remove this project from the user?");
     if (!confirmRemove) {
@@ -98,6 +99,7 @@ const AdminUpdateUser = () => {
     setUserProjects((prevProjects) => prevProjects.filter((project) => project !== projectId));
   };
 
+  // Function to handle role change
   const onChangeRole = (e) => {
     const isProjectManager = allProjects.some((project) => project.manager === user._id);
     if (isProjectManager && e.target.value === "user") {

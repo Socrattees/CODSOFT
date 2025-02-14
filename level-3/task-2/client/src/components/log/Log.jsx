@@ -5,6 +5,7 @@ import './log.css';
 const Log = ({ logs, users, admin }) => {
   const { user: currentUser } = useContext(UserContext);
 
+  // Function to find username by userId
   const findUsername = (userId) => {
     const user = users.find(user => user._id === userId);
     if (user) {

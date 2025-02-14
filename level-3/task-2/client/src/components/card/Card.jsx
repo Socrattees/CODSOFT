@@ -30,6 +30,7 @@ const Card = ({ type, itemDetails }) => {
     }
   };
 
+  // Assign classes based on conditions
   const endDateClass = isLessThanAWeekLeft(itemDetails.endDate) ? "less-than-a-week" : "";
   const priorityClass = getPriorityClass(itemDetails.priority);
 

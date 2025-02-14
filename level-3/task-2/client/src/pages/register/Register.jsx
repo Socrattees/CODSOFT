@@ -13,8 +13,10 @@ const Register = () => {
   const [error, setError] = useState("");
   const [adminExits, setAdminExists] = useState(false);
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // As page is only for admin registration, we are not checking for admin role
     if (adminExits) {
       setError("Admin already exists");
       return;
@@ -24,17 +26,13 @@ const Register = () => {
       return;
     }
     try {
-      console.log("Username:", username);
-      console.log("First Name:", firstName);
-      console.log("Surname:", surname);
-      console.log("Email:", email);
-      console.log("Password:", password);
       setError("");
     } catch (err) {
       setError("An error occurred during registration");
     }
   };
 
+  // useEffect to check if admin exists
   useEffect(() => {
     const findAdmin = async () => {
       try {

@@ -9,10 +9,12 @@ const AdminNavbar = () => {
 
   const navigate = useNavigate();
 
+  // Toggle dropdown menu
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
+  // Function to handle logout
   const handleLogout = async () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (!confirmLogout) {

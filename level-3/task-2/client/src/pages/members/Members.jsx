@@ -13,16 +13,19 @@ const Members = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle update button click
   const handleUpdate = (id) => {
     console.log("Update user with id: ", id);
     navigate(`/home/users/${id}`, { state: { id } });
   };
 
+  // Function to find project name by id
   const findProjectName = (id) => {
     const project = projects.find((project) => project._id === id);
     return project ? project.name : "Project not found";
   };
 
+  // Function to check if user is in managed project
   const isUserInManagedProject = (userProjects) => {
     return userProjects.some((projectId) => {
       const project = projects.find((project) => project._id === projectId);

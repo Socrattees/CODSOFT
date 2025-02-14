@@ -19,6 +19,7 @@ const AdminCreateUser = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -55,12 +56,12 @@ const AdminCreateUser = () => {
       await registerCall(newUser);
       setError("");
       navigate("/admin/users");
-      console.log("User created successfully");
     } catch (err) {
       setError("An error occurred during creation");
     }
   };
 
+  // Function to handle cancel button
   const handleCancel = () => {
     const confirmCancel = window.confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
     if (!confirmCancel) {
@@ -69,12 +70,14 @@ const AdminCreateUser = () => {
     navigate("/admin/users");
   };
 
+  // Function to add a project to the user
   const handleAddProject = () => {
     if (selectedProject && !userProjects.includes(selectedProject)) {
       setUserProjects((prevProjects) => [...prevProjects, selectedProject]);
     }
   };
 
+  // Function to remove a project from the user
   const handleRemoveProject = (projectId) => {
     const confirmRemove = window.confirm("Are you sure you want to remove this project from the user?");
     if (!confirmRemove) {

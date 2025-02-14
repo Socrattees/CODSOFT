@@ -13,13 +13,13 @@ const Projects = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle project update button
   const handleUpdate = (id) => {
-    console.log("Update project with id: ", id);
     navigate(`/home/projects/${id}`, { state: { id } });
   };
 
+  // Function to handle view details button
   const handleViewDetails = (id) => {
-    console.log("View details of project with id: ", id);
     navigate(`/home/projects/details/${id}`, { state: { id } });
   };
 

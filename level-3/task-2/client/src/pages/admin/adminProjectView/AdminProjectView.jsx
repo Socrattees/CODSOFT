@@ -24,35 +24,13 @@ const AdminProjectView = () => {
     return diffDays < 7;
   };
 
-  useEffect(() => {
-    const fetchProject = async () => {
-      try {
-        const res = await getProjectCall(id);
-        setProject(res);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchProject();
-  }, [id]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await getUsersCall();
-        setUsers(res);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchUsers();
-  }, []);
-
+  // Function to get user name by id
   const getUserNameById = (userId) => {
     const user = users.find(user => user._id === userId);
     return user ? user.username : 'Unknown User';
   };
 
+  // Function to assign priority class
   const getPriorityClass = (priority) => {
     switch (priority) {
       case 'high':
@@ -65,6 +43,32 @@ const AdminProjectView = () => {
         return '';
     }
   };
+
+  // useEffect to fetch project details
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const res = await getProjectCall(id);
+        setProject(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProject();
+  }, [id]);
+
+  // useEffect to fetch users
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await getUsersCall();
+        setUsers(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   if (!project) {
     return <div>Loading...</div>;

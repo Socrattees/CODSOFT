@@ -10,17 +10,17 @@ const AdminUserManagement = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle update user button
   const handleUpdate = (id) => {
-    console.log("Update user with id: ", id);
     navigate(`/admin/users/${id}`, { state: { id } });
   };
 
+  // Function to handle delete user button
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
     if (!confirmDelete) {
       return;
     }
-    console.log("Delete user with id: ", id);
     try {
       await deleteUserCall(id);
       const updatedUsers = users.filter((user) => user._id !== id);
@@ -30,6 +30,12 @@ const AdminUserManagement = () => {
     }
   };
 
+  // Function to handle create user button
+  const handleCreateUser = () => {
+    navigate("/admin/users/create");
+  };
+
+  // Function to find project name by id
   const findProjectName = (id) => {
     const project = projects.find((project) => project._id === id);
     return project ? project.name : "Project not found";
@@ -60,10 +66,6 @@ const AdminUserManagement = () => {
     };
     fetchProjects();
   }, []);
-
-  const handleCreateUser = () => {
-    navigate("/admin/users/create");
-  };
 
   return (
     <>

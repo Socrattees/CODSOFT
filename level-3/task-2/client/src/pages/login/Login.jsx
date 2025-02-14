@@ -14,6 +14,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Email:", email);
@@ -21,10 +22,8 @@ const Login = () => {
     try {
       const loginCredentials = await loginCall({ email, password }, dispatch);
       if (loginCredentials.email) {
-        console.log("Login successful");
-        setError(""); // Clear any previous error
+        setError("");
       } else {
-        console.log("Login failed");
         setError("Login failed. Please check your email and password.");
       }
     } catch (err) {
@@ -33,6 +32,7 @@ const Login = () => {
     }
   };
 
+  // useEffect to check if admin exists
   useEffect(() => {
     const findAdmin = async () => {
       try {

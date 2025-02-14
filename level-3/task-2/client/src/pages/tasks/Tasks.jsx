@@ -14,11 +14,12 @@ const Tasks = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle update
   const handleUpdate = (id) => {
-    console.log("Update task with id: ", id);
     navigate(`/home/tasks/${id}`, { state: { id } });
   };
 
+  // Function to handle deletion of a task
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this task?");
     if (!confirmDelete) {

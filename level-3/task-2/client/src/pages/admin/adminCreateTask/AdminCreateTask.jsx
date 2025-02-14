@@ -23,6 +23,7 @@ const AdminCreateTask = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -40,12 +41,12 @@ const AdminCreateTask = () => {
       await createTaskCall(newTask, currentUser._id);
       setError("");
       navigate("/admin/tasks");
-      console.log("Task created successfully");
     } catch (err) {
       setError("An error occurred during task creation");
     }
   };
 
+  // Function to handle cancel button
   const handleCancel = () => {
     const confirmCancel = window.confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
     if (!confirmCancel) {

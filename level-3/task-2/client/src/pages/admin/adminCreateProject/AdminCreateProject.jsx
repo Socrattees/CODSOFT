@@ -20,6 +20,7 @@ const AdminCreateProject = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -41,16 +42,15 @@ const AdminCreateProject = () => {
         status,
         priority,
       };
-      console.log(newProject);
       await createProjectCall(newProject);
       setError("");
       navigate("/admin/projects");
-      console.log("Project created successfully");
     } catch (err) {
       setError("An error occurred during creation");
     }
   };
 
+  // Function to handle cancel button
   const handleCancel = () => {
     const confirmCancel = window.confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
     if (!confirmCancel) {
@@ -59,12 +59,14 @@ const AdminCreateProject = () => {
     navigate("/admin/projects");
   };
 
+  // Function to add member to project
   const handleAddMember = (userId) => {
     if (userId && !members.includes(userId)) {
       setMembers((prevMembers) => [...prevMembers, userId]);
     }
   };
 
+  // Function to remove member from project
   const handleRemoveMember = (userId) => {
     const confirmRemove = window.confirm("Are you sure you want to remove this member from the project?");
     if (!confirmRemove) {

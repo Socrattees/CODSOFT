@@ -14,11 +14,13 @@ const AdminTaskManagement = () => {
 
   const navigate = useNavigate();
 
+  // Function to handle update task
   const handleUpdate = (id) => {
     console.log("Update task with id: ", id);
     navigate(`/admin/tasks/${id}`, { state: { id } });
   };
 
+  // Function to handle delete task
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this task?");
     if (!confirmDelete) {
