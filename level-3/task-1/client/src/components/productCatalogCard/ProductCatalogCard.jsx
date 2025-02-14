@@ -8,7 +8,8 @@ in the Product Catalog component */
 const ProductCatalogCard = ({ product }) => {
   const [stockClass, setStockClass] = useState(""); // State to store the class name for the stock value
   const [stockText, setStockText] = useState(""); // State to store the stock value
-  const {cart, dispatch } = useContext(UserContext);
+  const {user, cart, dispatch } = useContext(UserContext);
+  const [isGuest, setIsGuest] = useState(true);
 
   // Function to format the price value
   const formattedPrice = new Intl.NumberFormat('en-ZA', {
@@ -57,6 +58,17 @@ const ProductCatalogCard = ({ product }) => {
     updateStockValue();
   }, [product.stock]);
 
+  // useEffect to check if the user is a guest
+  useEffect(() => {
+    console.log(user);
+    if (user) {
+      setIsGuest(false);
+    }
+  }
+  , [user]);
+
+  console.log(isGuest);
+
   return (
     <div className="product-catalog-card" aria-label={`Product card for ${product.name}`}>
       <div className="product-catalog-card-content-wrapper">
@@ -74,7 +86,14 @@ const ProductCatalogCard = ({ product }) => {
           <p className={stockClass} aria-live="polite">{ stockText }</p>
         </div>
       </div>
-      <button className="product-catalog-card-button" onClick={handleAddToCart} aria-label={`Add ${product.name} to cart`}>Add to Cart</button>
+      <button
+        className="product-catalog-card-button"
+        onClick={handleAddToCart}
+        aria-label={`Add ${product.name} to cart`}
+        disabled={isGuest}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };

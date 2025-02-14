@@ -13,6 +13,7 @@ const Navbar = () => {
   const [search, setSearch] = useState(""); // State to manage search input
   const [isCartVisible, setIsCartVisible] = useState(false); // State to manage cart visibility
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
+  const [isGuest, setIsGuest] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -61,6 +62,13 @@ const Navbar = () => {
       getCart();
     }
   }, [user, dispatch]);
+
+  // useEffect to check if the user is a guest
+  useEffect(() => {
+    if (user) {
+      setIsGuest(false);
+    }
+  }, [user]);
 
   return (
     <nav className="navbar" aria-label="Main Navigation">
@@ -112,6 +120,7 @@ const Navbar = () => {
             className="navbar-cart-icon"
             onClick={toggleCartVisibility}
             aria-label="Cart"
+            disabled={isGuest}
           />
         </li>
         <li>{ user ?
@@ -119,7 +128,7 @@ const Navbar = () => {
           : <Link to="/login" aria-label="Login">Login</Link>}
         </li>
       </ul>
-      {isCartVisible &&
+      {isCartVisible && !isGuest &&
         <NavbarCart
           user={user}
           cart={cart}
