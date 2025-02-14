@@ -37,7 +37,7 @@ export const findAdminCall = async () => {
 
 //USERS
 
-// Get all users
+// Get all users minus admin
 export const getUsersCall = async () => {
   try {
     const res = await axios.get("/api/users");
@@ -51,6 +51,16 @@ export const getUsersCall = async () => {
 export const getUserCall = async (id) => {
   try {
     const res = await axios.get(`/api/users/${id}`);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+// Get admin
+export const getAdminCall = async () => {
+  try {
+    const res = await axios.get("/api/users/get-admin/admin");
     return res.data;
   } catch (err) {
     return err;

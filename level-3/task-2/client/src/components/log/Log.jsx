@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { getLogsCall } from '../../apiCalls';
+import React, { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
+import './log.css';
 
-const Log = () => {
-  const [logs, setLogs] = useState([]);
+const Log = ({ logs, users, admin }) => {
+  const { user: currentUser } = useContext(UserContext);
 
-  useEffect(() => {
-    const fetchLogs = async () => {
-      try {
-        const response = await getLogsCall();
-        setLogs(response.data);
-      } catch (error) {
-        console.error('Error fetching logs:', error);
-      }
-    };
-
-    fetchLogs();
-  }, []);
+  const findUsername = (userId) => {
+    const user = users.find(user => user._id === userId);
+    if (user) {
+      return user.username;
+    } else if (!user && currentUser._id === userId) {
+      return currentUser.username;
+    } else if (!user && admin._id === userId) {
+      return admin.username;
+    } else {
+      return "Unknown";
+    }
+  }
 
   return (
-    <div className="logs-container">
+    <div className="logs">
       {logs.map(log => (
         <div className="log-entry" key={log._id}>
-          <h3>{log.title}</h3>
-          <p>Type: {log.entityType}</p>
-          <p>Entity ID: {log.entityId}</p>
-          <p>Action: {log.action}</p>
-          <p>User: {log.user}</p>
-          <p>Timestamp: {new Date(log.timestamp).toLocaleString()}</p>
+          <p>
+            <span className="username">{findUsername(log.user)}</span>{" "}
+            <span className={`action ${log.action}`}>{log.action}d</span>{" "}
+            {log.entityType} "{log.title}" on <span className="timestamp">{new Date(log.timestamp).toLocaleString()}</span>
+          </p>
         </div>
       ))}
     </div>

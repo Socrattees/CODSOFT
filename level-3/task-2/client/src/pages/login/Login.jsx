@@ -10,6 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [adminExists, setAdminExists] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,13 +20,16 @@ const Login = () => {
     console.log("Password:", password);
     try {
       const loginCredentials = await loginCall({ email, password }, dispatch);
-      if (loginCredentials) {
+      if (loginCredentials.email) {
         console.log("Login successful");
+        setError(""); // Clear any previous error
       } else {
         console.log("Login failed");
+        setError("Login failed. Please check your email and password.");
       }
     } catch (err) {
       console.error("Error while logging in:", err);
+      setError("An error occurred while logging in. Please try again later.");
     }
   };
 
@@ -83,11 +87,12 @@ const Login = () => {
             </div>
             <button type="submit">Login</button>
           </form>
-          { !adminExists &&            
+          {!adminExists &&            
             <p>
               Don't have an account? <Link to="/register">Register here</Link>
             </p>
           }
+          {error && <p className="error-message">{error}</p>}
         </div>
       </div>
     </div>

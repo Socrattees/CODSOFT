@@ -3,7 +3,6 @@ import './category.css';
 import Card from '../card/Card';
 
 const Category = ({ list, type }) => {
-  console.log(list);
 
   return (
     <div className="category-list">

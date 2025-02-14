@@ -2,62 +2,58 @@ import React, { useContext, useEffect, useState } from 'react';
 import './home.css';
 import Navbar from '../../components/navbar/NavBar';
 import { UserContext } from '../../context/UserContext';
-import { getProjectsCall, getTasksCall, getLogsCall } from '../../apiCalls';
+import { getProjectsCall, getTasksCall, getLogsCall, getUsersCall, getAdminCall } from '../../apiCalls';
 import Category from '../../components/category/Category';
+import Log from '../../components/log/Log';
 
 const Home = () => {
   const { user: currentUser } = useContext(UserContext);
-
+  const [admin, setAdmin] = useState({});
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [users, setUsers] = useState([]);
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  // useEffect to fetch projects, tasks, and logs
+  // useEffect to fetch projects, tasks, users, and logs
   useEffect(() => {
+    if (!currentUser) return;
+
     const fetchProjects = async () => {
-      try {
-        const projects = await getProjectsCall();
-        setProjects(projects);
-      } catch (err) {
-        setError("Error while fetching projects.");
-        console.error("Error while fetching projects:", err);
-      }
+      const res = await getProjectsCall();
+      setProjects(res);
+    };
+
+    const fetchUsers = async () => {
+      const res = await getUsersCall();
+      setUsers(res);
+    };
+    const fetchAdmin = async () => {
+      const res = await getAdminCall();
+      setAdmin(res);
     };
     const fetchTasks = async () => {
-      try {
-        const tasks = await getTasksCall();
-        setTasks(tasks);
-      } catch (err) {
-        setError("Error while fetching tasks.");
-        console.error("Error while fetching tasks:", err);
-      }
+      const res = await getTasksCall();
+      setTasks(res);
     };
     const fetchLogs = async () => {
-      try {
-        const logs = await getLogsCall();
-        setLogs(logs);
-      } catch (err) {
-        setError("Error while fetching logs.");
-        console.error("Error while fetching logs:", err);
-      }
+      const res = await getLogsCall();
+      const filteredLogs = res.filter(log => 
+        (log.entityType === "Project" && currentUser.projects?.includes(log.entityId)) ||
+        (log.entityType === "Task" && currentUser.tasks?.includes(log.entityId))
+      );
+      setLogs(filteredLogs);
     };
-    const fetchData = async () => {
-      await fetchProjects();
-      await fetchTasks();
-      await fetchLogs();
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+    fetchProjects();
+    fetchUsers();
+    fetchAdmin();
+    fetchTasks();
+    fetchLogs();
+    setLoading(false);
+  }, [currentUser]);
 
-  if (loading) {
+  if (!currentUser || loading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
   }
 
   return (
@@ -105,6 +101,12 @@ const Home = () => {
           ) : (
             "No tasks assigned"
           )}
+        </section>
+        <section className="dashboard-logs">
+          <h2>Recent Activity</h2>
+          <div className="logs-container">
+            <Log logs={logs} users={users} admin={admin} />
+          </div>
         </section>
       </div>
     </>

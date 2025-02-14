@@ -1,0 +1,36 @@
+.logs{
+  padding: 20px;
+}
+
+.log-entry {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.username {
+  font-weight: bold;
+  color: #333;
+}
+
+.action {
+  text-transform: capitalize;
+}
+
+.action.create {
+  color: green;
+}
+
+.action.update {
+  color: blue;
+}
+
+.action.delete {
+  color: red;
+}
+
+.timestamp {
+  font-style: italic;
+}

@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./admin-dashboard.css";
-import { getProjectsCall, getTasksCall, getUsersCall } from '../../../apiCalls';
+import { getLogsCall, getProjectsCall, getTasksCall, getUsersCall } from '../../../apiCalls';
 import AdminNavbar from '../../../components/adminNavbar/AdminNavbar';
+import Log from '../../../components/log/Log';
+import { UserContext } from '../../../context/UserContext';
 
 const AdminDashboard = () => {
+  const { user: currentUser } = useContext(UserContext);
+
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [logs, setLogs] = useState([]);
 
-  // useEffect to fetch projects, tasks and users
+  // useEffect to fetch projects, tasks, users and logs
   useEffect(() => {
     const fetchProjects = async () => {
       const res = await getProjectsCall();
@@ -24,10 +29,19 @@ const AdminDashboard = () => {
       const res = await getTasksCall();
       setTasks(res);
     };
+    const fetchLogs = async () => {
+      const res = await getLogsCall();
+      setLogs(res);
+    };
     fetchProjects();
     fetchUsers();
     fetchTasks();
+    fetchLogs();
   }, []);
+
+  if (!currentUser) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -75,6 +89,12 @@ const AdminDashboard = () => {
           <div className="management-section">
             <h2>Task Management</h2>
             <Link to="/admin/tasks">Manage Tasks</Link>
+          </div>
+        </section>
+        <section className="dashboard-logs">
+          <h2>Recent Activity</h2>
+          <div className="logs-container">
+            <Log logs={logs} users={users} />
           </div>
         </section>
       </div>

@@ -26,6 +26,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Get admin
+router.get("/get-admin/admin", async (req, res) => {
+  try {
+    // Find admin and remove password
+    const admin = await User.findOne({ role: "admin" }).select("-password");
+    if (!admin) {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+    res.status(200).json(admin);
+  } catch (err) {
+    console.error("Error fetching admin:", err);
+    res.status(500).json({ message: "An error occurred while fetching the admin" });
+  }
+});
+
 // Get number of users besides admin
 router.get("/count", async (req, res) => {
   try {

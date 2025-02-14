@@ -30,6 +30,7 @@
   padding: 20px;
   box-sizing: border-box;
   min-width: 250px;
+  max-width: 300px;
 }
 
 .login-form-wrapper a {
@@ -74,4 +75,8 @@
 
 .login-form .form-group button:hover {
   background-color: #45a049;
+}
+
+.login .error-message {
+  color: red;
 }
