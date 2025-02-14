@@ -4,6 +4,7 @@ import morgan from "morgan";
 import "dotenv/config";
 import helmet from "helmet";
 import path from "path";
+import cors from "cors";
 import productRouter from "./routes/products.js";
 import userRouter from "./routes/users.js";
 import authRouter from "./routes/auth.js";
@@ -14,7 +15,6 @@ import TransactionRouter from "./routes/transactions.js";
 import { fileURLToPath } from "url";
 
 const app = express();
-
 
 // Database connection to MongoDB
 mongoose.connect(process.env.MONGO_URL).then(() => {
@@ -30,6 +30,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
 
 // Routes
 app.use("/api/products", productRouter);
