@@ -4,6 +4,7 @@ import morgan from "morgan";
 import "dotenv/config";
 import helmet from "helmet";
 import path from "path";
+import cors from "cors";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/users.js";
 import projectRoute from "./routes/projects.js";
@@ -28,6 +29,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
 
 // Store profile pictures in the public folder
 const storage = multer.diskStorage({
