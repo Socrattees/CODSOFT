@@ -11,7 +11,7 @@ import {
 export const loginCall = async (userDetails, dispatch) => {
   dispatch(LoginStart());
   try {
-    const res = await axios.post("/api/auth/login", userDetails);
+    const res = await axios.post("/https://codsoft-level-3-task-1.onrender.com/api/auth/login", userDetails);
     dispatch(LoginSuccess(res.data));
   } catch (err) {
     dispatch(LoginFail(err));
