@@ -11,7 +11,7 @@ import {
 export const loginCall = async (userDetails, dispatch) => {
   dispatch(LoginStart());
   try {
-    const res = await axios.post("/https://codsoft-level-3-task-1.onrender.com/api/auth/login", userDetails);
+    const res = await axios.post("/api/auth/login", userDetails);
     dispatch(LoginSuccess(res.data));
   } catch (err) {
     dispatch(LoginFail(err));
@@ -54,7 +54,7 @@ export const updateUserDetailsCall = async (userId, updatedUserDetails) => {
 // Get all products
 export const getAllProductsCall = async () => {
   try {
-    const res = await axios.get("/api/products");
+    const res = await axios.get("/https://codsoft-level-3-task-1.onrender.com/api/products");
     return res.data;
   } catch (err) {
     return console.error("Error in retrieving data of all products: ", err);
