@@ -54,7 +54,7 @@ export const updateUserDetailsCall = async (userId, updatedUserDetails) => {
 // Get all products
 export const getAllProductsCall = async () => {
   try {
-    const res = await axios.get("/https://codsoft-level-3-task-1.onrender.com/api/products");
+    const res = await axios.get("https://codsoft-level-3-task-1.onrender.com/api/products");
     return res.data;
   } catch (err) {
     return console.error("Error in retrieving data of all products: ", err);
